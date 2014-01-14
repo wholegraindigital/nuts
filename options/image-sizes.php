@@ -1,5 +1,7 @@
 <?php 
 
+// Set up the image sizes for the theme
+
 function nuts_image_sizes () {
 
 	// This theme uses a custom image size for featured images, displayed on "standard" posts.
