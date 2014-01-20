@@ -4,6 +4,19 @@
 
 
 
+// Now set up the settings for the Theme Options page
+$nuts_logo_array = array (
+        "name"			=> "nuts_logo",
+        "title"			=> "Theme Logo",
+        "description"	=> "Please upload your website's logo here.",
+        "section"		=> "nuts_first_section",
+        "type"			=> "image",
+        "default"		=> ""
+);
+nuts_register_option ( $nuts_logo_array );
+
+
+
 // This is the function that displays the theme logo
 function nuts_logo ( $print = "img" ) {
 
@@ -23,21 +36,7 @@ function nuts_logo ( $print = "img" ) {
 	
 }
 
-add_action ( 'after_setup_theme', 'nuts_logo' );
 
-
-
-
-// Now set up the settings for the Theme Options page
-$nuts_logo_array = array (
-	"name" 			=> "logo",
-	"title" 		=> "Theme Logo",
-	"description" 	=> "Please upload your website's logo here.",
-	"option_group"	=> "",
-	"type" 			=> "image",
-	"default"		=> ""
-);
-nuts_register_option ( $nuts_logo_array );
 
 
 ?>

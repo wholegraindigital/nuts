@@ -1,5 +1,22 @@
 <?php 
 
+// Load the data types that are used by the framework
+require_once "data-types/type-image.php";
+
+
+
+// First collect the action hooks here
+add_action( 'admin_enqueue_scripts', 'nuts_admin_scripts' );
+add_action( 'admin_menu', 'nuts_theme_options_menu' );
+add_action( 'admin_init', 'nuts_admin_init' );
+
+
+// The options array that stores all the options to be displayed in Theme Options
+$nuts_options_array = array ();
+
+
+
+
 // Safe loader for framework parts. Uses require_once if the file exists and is readable
 function nuts_loader ( $filename ) {
 	
@@ -28,59 +45,108 @@ function nuts_load_all_options ( $file_dir, $options_dir = "options" ) {
 
 
 
-$nuts_options_array = array ();
+
 
 // Make an option appear in the Theme Options page. $narr is a foreign array coming from a module that is to be added to the global $nuts_options_array
 function nuts_register_option ( $narr ) {
-	
+        
 	// Use the global $nuts_options_array that builds up the Theme Options panel
 	global $nuts_options_array;
 	
-	// Put the options in the right option group --- if no value is set, use the General option group, which is displayed as the first one in Theme Options
-	if ( !empty ( $narr["option_group"] ) ) $option_group = $narr["option_group"];
-	else $option_group = "General";
-	
-	$nuts_options_array[$option_group][] = $narr;
+	$nuts_options_array[] = $narr;
 
-	return 1;
+	return $nuts_options_array;
 
 }
+
+
+
+
+
+
+// Initializes the Theme Options
+function nuts_admin_init () {
+
+    global $nuts_options_array;
+
+	if( get_option( 'nuts_theme_options' ) == false )    
+		add_option( 'nuts_theme_options' );  
+
+	register_setting (
+		'nuts_theme_options',
+		'nuts_theme_options'
+	);
+		       
+	add_settings_section(
+		'nuts_first_section', 
+		'NUTS First section name', 
+		'nuts_section_info', 
+		'nuts_theme_options'
+	);  	
+
+
+	// Add the option fields
+	foreach ( $nuts_options_array as $setting ) {
+	
+		add_settings_field (
+			$setting["name"],
+			$setting["title"],
+			'nuts_theme_options_callback',
+			'nuts_theme_options',
+			$setting["section"],
+			array( 	'name' => $setting["name"],
+					'type' => $setting["type"] ) 
+		);  
+	
+	}	
+
+}
+
+
+
+
+// Section callback function
+function nuts_section_info () {
+	echo '<p>This is the first section</p>';
+}
+
+
+function nuts_theme_options_callback ( $args ) {
+
+	$name = $args["name"];
+	$type = $args["type"];
+
+	if ( get_option ( 'nuts_theme_options' ) == "" ) $options = array ();
+		else $options = get_option ( 'nuts_theme_options' );
+	if ( !array_key_exists ( $name, $options ) ) $options[$name] = "";
+
+	
+	
+// Image uploader	
+	type_image_field ( $name, $options[$name] );
+
+}
+
+
+
+
 
 
 
 // Theme Option page generator function
 function nuts_theme_options () {
 	
-	// Use the global $nuts_options_array that builds up the Theme Options panel
-	global $nuts_options_array;
-
 	// Make the base structure of the Theme Options page
-	$output = '<div class="wrap">
+	echo '<div class="wrap">
             <?php screen_icon(); ?>
             <h2>My Settings</h2>           
             <form method="post" action="options.php">';
             
-    foreach ( $nuts_options_array as $key => $option_group ) {
-		settings_fields ( $key );
-		$output .= '<h3>' . $key . '</h3>';
-		
-		foreach ( $option_group as $option ) {
-			$output .= '<h4>' . $option["title"] . '</h4>' . '<p>' . $option["description"] . '</p>';
-			register_setting ( $key, $option["name"] );
-			
-			if ( $option["type"] == "image" ) {
-				$output .= '<div class="uploader">
-  <input type="text" name="mp_logo_image" id="mp_logo_image" />
-  <input class="button" name="mp_logo_image_button" id="mp_logo_image_button" value="Upload" />
-</div>';
-			}
-		}
-    }
-            
-    $output .= '</form>
+	settings_fields ( 'nuts_theme_options' );
+	do_settings_sections ( 'nuts_theme_options' );
+                   
+    echo get_submit_button() . '</form>
         </div>';
-        
-	echo $output;
 	
 }
 
@@ -90,7 +156,7 @@ function nuts_theme_options () {
 // Add the submenu 'Theme Options' under Appearance
 function nuts_theme_options_menu () {
 
-	add_submenu_page ( 'themes.php', 'NUTS Theme Options', 'Theme Options', 'manage_options', 'nuts-theme-options', 'nuts_theme_options' );
+	add_theme_page ( 'NUTS Theme Options', 'Theme Options', 'manage_options', 'nuts_theme_options', 'nuts_theme_options' );
 
 }
 
@@ -102,6 +168,5 @@ function nuts_admin_scripts( ) {
 
 }
 
-add_action( 'admin_enqueue_scripts', 'nuts_admin_scripts' );
 
 ?>

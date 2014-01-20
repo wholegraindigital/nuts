@@ -1,14 +1,13 @@
 <?php
 
+// Load the NUTS PHP engine
 require_once "nuts/nuts.php";
 
-// Safe load the options and features
 
 // Load ALL options
 nuts_load_all_options ( dirname ( __FILE__ ) );
 
-// Only show the Theme Options menu if there's any option registered by NUTS modules
-if ( count ( $nuts_options_array ) > 0 ) add_action( 'admin_menu', 'nuts_theme_options_menu' );
+
 
 // Run the SETUP process
 function fullflow_setup () {

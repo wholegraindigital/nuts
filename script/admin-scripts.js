@@ -2,9 +2,10 @@ jQuery(document).ready(function($) {
 
     var custom_uploader;
  
-     $('#mp_logo_image_button').click(function(e) {
+     $('.uploader .button').click(function(e) {
  
         e.preventDefault();
+		var attrib = '#'+$(this).parent().find('.attrib').val();
  
         //If the uploader object has already been created, reopen the dialog
         if (custom_uploader) {
@@ -24,7 +25,7 @@ jQuery(document).ready(function($) {
         //When a file is selected, grab the URL and set it as the text field's value
         custom_uploader.on('select', function() {
             attachment = custom_uploader.state().get('selection').first().toJSON();
-            $('#mp_logo_image').val(attachment.url);
+            $(attrib).val(attachment.url);
         });
  
         //Open the uploader dialog
