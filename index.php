@@ -6,7 +6,11 @@
             <div class="main-content-inner">
             
 				<?php get_template_part ( 'parts/loop' ); ?>
-				
+				<?php echo nuts_image("image1"); ?>
+				<?php echo nuts_image("image2", "", "thumb"); ?>
+				<?php echo nuts_get_text("text1"); ?>
+				<?php nuts_text("text1"); ?>
+				<?php echo "The sky is " . nuts_get_select("select1"); ?>
             </div>
         </div>
         

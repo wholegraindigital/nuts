@@ -8,6 +8,8 @@ require_once "nuts/nuts.php";
 nuts_load_all_options ( dirname ( __FILE__ ) );
 
 
+// var_dump ($nuts_options_array);
+
 
 // Run the SETUP process
 function fullflow_setup () {

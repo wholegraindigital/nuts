@@ -2,13 +2,18 @@
 
 // Load the data types that are used by the framework
 require_once "data-types/type-image.php";
+require_once "data-types/type-text.php";
+require_once "data-types/type-select.php";
 
 
 
 // First collect the action hooks here
-add_action( 'admin_enqueue_scripts', 'nuts_admin_scripts' );
-add_action( 'admin_menu', 'nuts_theme_options_menu' );
-add_action( 'admin_init', 'nuts_admin_init' );
+add_action( 'admin_menu', 'nuts_admin_init' );
+// Make the scripts appear only in the code of the Theme Options page, thus reducing the possibilities of interferences
+add_action( 'admin_print_scripts-appearance_page_nuts_theme_options', 'nuts_admin_scripts' );
+
+
+
 
 
 // The options array that stores all the options to be displayed in Theme Options
@@ -53,9 +58,9 @@ function nuts_register_option ( $narr ) {
 	// Use the global $nuts_options_array that builds up the Theme Options panel
 	global $nuts_options_array;
 	
-	$nuts_options_array[] = $narr;
-
-	return $nuts_options_array;
+	$narr_name = $narr["name"];
+	
+	$nuts_options_array[$narr_name] = $narr;
 
 }
 
@@ -68,7 +73,9 @@ function nuts_register_option ( $narr ) {
 function nuts_admin_init () {
 
     global $nuts_options_array;
-
+    
+    add_theme_page ( 'NUTS Theme Options', 'Theme Options', 'manage_options', 'nuts_theme_options', 'nuts_theme_options' );
+    
 	if( get_option( 'nuts_theme_options' ) == false )    
 		add_option( 'nuts_theme_options' );  
 
@@ -121,9 +128,9 @@ function nuts_theme_options_callback ( $args ) {
 	if ( !array_key_exists ( $name, $options ) ) $options[$name] = "";
 
 	
-	
-// Image uploader	
-	type_image_field ( $name, $options[$name] );
+	$type_func = "nuts_type_" . $type . "_field";
+
+	$type_func ( $name, $options[$name] );
 
 }
 
@@ -153,14 +160,7 @@ function nuts_theme_options () {
 
 
 
-// Add the submenu 'Theme Options' under Appearance
-function nuts_theme_options_menu () {
-
-	add_theme_page ( 'NUTS Theme Options', 'Theme Options', 'manage_options', 'nuts_theme_options', 'nuts_theme_options' );
-
-}
-
-
+// Load the jQuery code needed in Theme Options
 function nuts_admin_scripts( ) {
 
 	wp_enqueue_media();
