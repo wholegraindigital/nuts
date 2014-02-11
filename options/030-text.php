@@ -7,7 +7,8 @@ $nuts_option_array = array (
         "description"	=> "Write your text here.",
         "section"		=> "nuts_first_section",
         "type"			=> "text",
-        "size"			=> ""
+        "size"			=> "",
+        "default"		=> "This is the default text."
 );
 nuts_register_option ( $nuts_option_array );
 

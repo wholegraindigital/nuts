@@ -5,7 +5,7 @@
 
 
 // Now set up the settings for the Theme Options page
-$nuts_logo_array = array ( 
+$nuts_option_array = array ( 
         "name"			=> "nuts_logo",
         "title"			=> "Theme Logo",
         "description"	=> "Please upload your website's logo here.",
@@ -13,16 +13,16 @@ $nuts_logo_array = array (
         "type"			=> "image",
         "size"			=> "homepage-thumb"
 );
-nuts_register_option ( $nuts_logo_array );
+nuts_register_option ( $nuts_option_array );
 
 
 
 
 // This is a shortcut for the nuts_image() function.
-function nuts_logo ( $print = "img" ) {
+function nuts_logo ( $a = "home" ) {
 
-	if ( $print == "img" ) echo '<a href="' . get_bloginfo ('url') . '">' . nuts_image ( "nuts_logo", $print ) . '</a>';
-		else echo nuts_image ( "nuts_logo", $print );
+	if ( $a == "home" ) echo '<a href="' . get_bloginfo ('url') . '">' . nuts_get_image ( "nuts_logo", nuts_get_image_size ( "nuts_logo" ) ) . '</a>';
+	if ( $a == "img" ) echo nuts_get_image ( "nuts_logo", nuts_get_image_size ( "nuts_logo" ) );
 
 }
 

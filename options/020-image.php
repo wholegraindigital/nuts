@@ -7,7 +7,7 @@ $nuts_image_array = array (
         "description"	=> "Please upload an optional image here.",
         "section"		=> "nuts_first_section",
         "type"			=> "image",
-        "size"			=> "large"
+        "size"			=> "medium"
 );
 nuts_register_option ( $nuts_image_array );
 

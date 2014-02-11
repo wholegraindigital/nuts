@@ -1,3 +1,4 @@
+// Media uploader script
 jQuery(document).ready(function($) {
 
     var custom_uploader;
@@ -65,4 +66,22 @@ jQuery(document).ready(function($) {
 	});
 	
  	
+});
+
+
+
+// Color picker script
+jQuery(document).ready(function($){
+	
+    $('.nuts-color-field').wpColorPicker();
+	
+});
+
+
+
+// Tabs in the Theme Options
+jQuery(document).ready(function($){
+	
+    $('#nuts-settings-tabs').tabs();
+	
 });

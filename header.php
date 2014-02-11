@@ -10,6 +10,11 @@
         <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 <!--        <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,400italic,700' rel='stylesheet' type='text/css'> -->
 <?php wp_head(); ?>
+
+
+<style>
+	h1 { color: <?php nuts_color('color1'); ?> }
+</style>
 </head>
     
     <div id="wrapper">

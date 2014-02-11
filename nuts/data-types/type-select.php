@@ -2,11 +2,10 @@
 
 // The file must have the type-[data-type].php filename format
 
-define	( "DEFAULT_SELECT_SIZE",	-1);
 
 
 
-// The function must have the type_[data-type]_field name format
+// The function must have the nuts_type_[data-type]_field name format
 function nuts_type_select_field ( $name, $id ) {
 
 	global $nuts_options_array;
@@ -33,10 +32,10 @@ function nuts_get_select ( $name ) {
 
 	global $nuts_options_array;
 
-	if ( get_option ( 'nuts_theme_options' ) == "" ) return "ERR01: no options set up for this theme";
+	if ( get_option ( 'nuts_theme_options' ) == "" ) return $nuts_options_array[$name]["default"];
 		else $options = get_option ( 'nuts_theme_options' );
-	if ( !array_key_exists ( $name, $options ) ) return "ERR02: option does not exist";
-	
+	if ( !array_key_exists ( $name, $options ) ) return $nuts_options_array[$name]["default"];
+
 
 	$id = $options[$name];
 	

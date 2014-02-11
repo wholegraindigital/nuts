@@ -8,7 +8,17 @@ define	( "DEFAULT_IMAGE_SIZE",	"full");
 
 
 
-// The function must have the type_[data-type]_field name format
+
+
+// Enqueue the media uploader script
+add_action( 'admin_print_scripts-appearance_page_nuts_theme_options', 'nuts_enqueue_media' );
+function nuts_enqueue_media( ) {
+	wp_enqueue_media();
+}
+
+
+
+// The function must have the nuts_type_[data-type]_field name format
 function nuts_type_image_field ( $name, $id ) {
 
 	$imgdata = wp_get_attachment_image_src( $id, 'thumbnail' );
@@ -42,17 +52,33 @@ function nuts_type_image_field ( $name, $id ) {
 
 
 
+// Get the default color
+function nuts_get_image_size ( $name ) {
+
+	global $nuts_options_array;
+	
+	if ( $nuts_options_array[$name]["size"] != "" ) $size = $nuts_options_array[$name]["size"];
+		else $size = DEFAULT_IMAGE_SIZE;
+
+	return $size;	
+	
+}
+
+
+
+
 // Gives you the image object based on the option name
 function nuts_get_image ( $name, $size = DEFAULT_IMAGE_SIZE ) {
 
-	if ( get_option ( 'nuts_theme_options' ) == "" ) return "ERR01: no options set up for this theme";
-		else $options = get_option ( 'nuts_theme_options' );
-	if ( !array_key_exists ( $name, $options ) ) return "ERR02: option does not exist";
+	global $nuts_options_array;
 
-	
-	
-	if ( $size == "" ) $size = DEFAULT_IMAGE_SIZE;
-	
+	if ( get_option ( 'nuts_theme_options' ) == "" ) return $nuts_options_array[$name]["default"];
+		else $options = get_option ( 'nuts_theme_options' );
+	if ( !array_key_exists ( $name, $options ) ) return $nuts_options_array[$name]["default"];
+
+		
+	if ( $size == "" ) $size = nuts_get_image_size ( $name );
+
 	
 	$id = $options[$name];
 	
@@ -69,14 +95,15 @@ function nuts_get_image ( $name, $size = DEFAULT_IMAGE_SIZE ) {
 // Gives you the image URL based on the option name
 function nuts_get_image_url ( $name, $size = DEFAULT_IMAGE_SIZE ) {
 
-	if ( get_option ( 'nuts_theme_options' ) == "" ) return "ERR01: no options set up for this theme";
-		else $options = get_option ( 'nuts_theme_options' );
-	if ( !array_key_exists ( $name, $options ) ) return "ERR02: option does not exist";
+	global $nuts_options_array;
 
+	if ( get_option ( 'nuts_theme_options' ) == "" ) return $nuts_options_array[$name]["default"];
+		else $options = get_option ( 'nuts_theme_options' );
+	if ( !array_key_exists ( $name, $options ) ) return $nuts_options_array[$name]["default"];
 	
 	
 	
-	if ( $size == "" ) $size = DEFAULT_IMAGE_SIZE;
+	if ( $size == "" ) $size = nuts_get_image_size ( $name );
 	
 	
 	$id = $options[$name];
@@ -92,7 +119,7 @@ function nuts_get_image_url ( $name, $size = DEFAULT_IMAGE_SIZE ) {
 
 
 // This is the function that returns the image in the size defined in its registered array
-function nuts_image ( $name, $print = "img", $size = "" ) {
+function nuts_image ( $name, $size = "", $print = "img" ) {
 
 	global $nuts_options_array;
 	
@@ -111,7 +138,7 @@ function nuts_image ( $name, $print = "img", $size = "" ) {
 		$value = "Invalid parameter: " . $print;
 	}
 	
-	return $value;
+	echo $value;
 	
 }
 
