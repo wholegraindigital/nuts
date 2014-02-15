@@ -7,7 +7,6 @@
         
         <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
         <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.gif">
-        <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 <!--        <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,400italic,700' rel='stylesheet' type='text/css'> -->
 <?php wp_head(); ?>
 

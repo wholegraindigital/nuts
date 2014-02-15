@@ -7,7 +7,6 @@ $nuts_option_array = array (
         "description"	=> "Select an option.",
         "section"		=> "nuts_second_section",
         "type"			=> "select",
-        "size"			=> "",
         "values"		=> array( "Red", "Green", "Blue" ),
         "default"		=> "Red"
 );

@@ -9,7 +9,6 @@ define	( "DEFAULT_IMAGE_SIZE",	"full");
 
 
 
-
 // Enqueue the media uploader script
 add_action( 'admin_print_scripts-appearance_page_nuts_theme_options', 'nuts_enqueue_media' );
 function nuts_enqueue_media( ) {
@@ -24,23 +23,23 @@ function nuts_type_image_field ( $name, $id ) {
 	$imgdata = wp_get_attachment_image_src( $id, 'thumbnail' );
 
 	echo '<div class="uploader">
-			<div class="image-container" style="height: 150px; width: 150px; position: relative; float: left; margin-right: 16px;">
+			<div class="image-container">
 				<img class="uploaded-image" id="' . $name . '_img" src="' . $imgdata[0] . '"';
 				
 		if ( $id == '' ) echo ' style="display: none"';
 		
 	echo ' />
-				<img class="placeholder" src="' . get_bloginfo('template_url') .'/img/no-image-placeholder.png"';
+				<img class="placeholder" src="' . get_bloginfo('template_url') .'/nuts/img/no-image-placeholder.png"';
 				
 		if ( $id != '' ) echo ' style="display: none;"';
 				
 	echo '  />		
-				<div class="closer" style="width: 32px; height: 32px; background-image: url(' . get_bloginfo('template_url') . '/img/admin-icons.png); position: absolute; top: -5px; right: -5px; opacity: 0.75; cursor:pointer;';
+				<div class="closer" style="';
 				
 		if ( $id == '' ) echo ' display: none';
 				
 	echo '">
-					<div class="hovermsg" style="display: none; width: 100px; background-color: rgba(255,255,255,0.9); border: #222 1px solid; padding: 2px; font-size: 12px; color: #000; border-radius: 2px; position: absolute; top: 20px; left: 20px;">Click here to remove image.</div>
+					<div class="hovermsg">Click here to remove image.</div>
 				</div>
 			</div>
 			<input type="hidden" name="nuts_theme_options[' . $name . ']" id="' . $name . '" value="' . $id . '" />
@@ -52,7 +51,7 @@ function nuts_type_image_field ( $name, $id ) {
 
 
 
-// Get the default color
+// Get the default size of the image
 function nuts_get_image_size ( $name ) {
 
 	global $nuts_options_array;
