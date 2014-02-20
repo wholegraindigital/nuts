@@ -42,8 +42,8 @@ function nuts_type_image_field ( $name, $id ) {
 					<div class="hovermsg">Click here to remove image.</div>
 				</div>
 			</div>
-			<input type="hidden" name="nuts_theme_options[' . $name . ']" id="' . $name . '" value="' . $id . '" />
-			<input class="attrib" type="hidden" name="nuts_theme_options_attrib[' . $name . ']" id="attrib_' . $name . '" value="' . $name . '" />
+			<input type="hidden" name="' . nuts_form_ref ( $name ) . '" id="' . $name . '" value="' . $id . '" />
+			<input class="attrib" type="hidden" name="' . nuts_get_section ( $name ) . '_attrib[' . $name . ']" id="attrib_' . $name . '" value="' . $name . '" />
 			<input class="button" type="button" name="' . $name . '_button" id="' . $name . '_button" value="Upload" />
 		</div>';
 
@@ -67,13 +67,13 @@ function nuts_get_image_size ( $name ) {
 
 
 // Gives you the image object based on the option name
-function nuts_get_image ( $name, $size = DEFAULT_IMAGE_SIZE ) {
+function nuts_get_image_object ( $name, $size = DEFAULT_IMAGE_SIZE ) {
 
 	global $nuts_options_array;
 
-	if ( get_option ( 'nuts_theme_options' ) == "" ) return $nuts_options_array[$name]["default"];
+	if ( get_option ( 'nuts_theme_options' ) == "" ) return $nuts_options_array[$name];
 		else $options = get_option ( 'nuts_theme_options' );
-	if ( !array_key_exists ( $name, $options ) ) return $nuts_options_array[$name]["default"];
+	if ( !array_key_exists ( $name, $options ) ) return '';
 
 		
 	if ( $size == "" ) $size = nuts_get_image_size ( $name );
@@ -92,13 +92,14 @@ function nuts_get_image ( $name, $size = DEFAULT_IMAGE_SIZE ) {
 
 
 // Gives you the image URL based on the option name
-function nuts_get_image_url ( $name, $size = DEFAULT_IMAGE_SIZE ) {
+function nuts_get_image ( $name, $size = DEFAULT_IMAGE_SIZE ) {
 
 	global $nuts_options_array;
 
-	if ( get_option ( 'nuts_theme_options' ) == "" ) return $nuts_options_array[$name]["default"];
+	
+	if ( get_option ( 'nuts_theme_options' ) == "" ) return $nuts_options_array[$name];
 		else $options = get_option ( 'nuts_theme_options' );
-	if ( !array_key_exists ( $name, $options ) ) return $nuts_options_array[$name]["default"];
+	if ( !array_key_exists ( $name, $options ) ) return '';
 	
 	
 	
@@ -118,7 +119,7 @@ function nuts_get_image_url ( $name, $size = DEFAULT_IMAGE_SIZE ) {
 
 
 // This is the function that returns the image in the size defined in its registered array
-function nuts_image ( $name, $size = "", $print = "img" ) {
+function nuts_image_object ( $name, $size = "", $print = "img" ) {
 
 	global $nuts_options_array;
 	
@@ -126,7 +127,7 @@ function nuts_image ( $name, $size = "", $print = "img" ) {
 	if ( $print == "" ) $print = "img";
 	
 	if ( $print == "img" ) {
-		$value = nuts_get_image ( $name, $size );
+		$value = nuts_get_image_object ( $name, $size );
 	}
 	
 	elseif ( $print == "url" ) {

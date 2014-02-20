@@ -5,7 +5,7 @@ $nuts_image_array = array (
         "name"			=> "image2",
         "title"			=> "Sample image 2",
         "description"	=> "Please upload an optional image here.",
-        "section"		=> "nuts_first_section",
+        "section"		=> "post::first_metabox",
         "type"			=> "image",
         "size"			=> "medium"
 );

@@ -8,10 +8,10 @@ define	( "DEFAULT_COLOR",	"#000000");
 
 
 // Enqueue the color picker script
-add_action( 'admin_print_scripts-appearance_page_nuts_theme_options', 'nuts_enqueue_color_picker' );
+add_action( 'admin_enqueue_scripts', 'nuts_enqueue_color_picker' );
 function nuts_enqueue_color_picker( $hook_suffix ) {
     wp_enqueue_style( 'wp-color-picker' );
-    wp_enqueue_script( 'wp-color-picker');    
+    wp_enqueue_script( 'wp-color-picker', array('jquery') );    
 }
 
 
@@ -38,7 +38,7 @@ function nuts_type_color_field ( $name, $value ) {
 	if ( $value == "" ) $value = nuts_get_default_color ( $name );
 
 	echo '<div class="color">
-			<input id="' . $name . '" name="nuts_theme_options[' . $name . ']" type="text" value="' . $value . '" class="nuts-color-field" data-default-color="' . nuts_get_default_color ( $name ) . '" />
+			<input id="' . $name . '" name="' . nuts_form_ref ( $name ) . '" type="text" value="' . $value . '" class="nuts-color-field" data-default-color="' . nuts_get_default_color ( $name ) . '" />
 		</div>';
 
 }

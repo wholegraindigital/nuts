@@ -3,19 +3,24 @@
 
 
 
-// First collect the action hooks here
-add_action( 'admin_menu', 'nuts_admin_init' );
 // Make the scripts appear only in the code of the Theme Options page, thus reducing the possibilities of interferences
-add_action( 'admin_print_scripts-appearance_page_nuts_theme_options', 'nuts_admin_scripts' );
+add_action ( 'admin_enqueue_scripts', 'nuts_admin_scripts' );
 // Load data type components
-add_action( 'init', 'nuts_load_data_types' );
+add_action ( 'init', 'nuts_load_data_types' );
+// First collect the action hooks here
+add_action ( 'admin_menu', 'nuts_admin_init' );
 // Load admin CSS, compile from LESS files
-add_action( 'wp_loaded', 'nuts_make_admin_css' );
+add_action ( 'wp_loaded', 'nuts_make_admin_css' );
 // Load front end CSS, compile from LESS files
-add_action( 'wp_loaded', 'nuts_make_front_css' );
+add_action ( 'wp_loaded', 'nuts_make_front_css' );
 // Load front end CSS, compile from LESS files
-add_action( 'wp_enqueue_scripts', 'nuts_front_scripts' );
-
+add_action ( 'wp_enqueue_scripts', 'nuts_front_scripts' );
+// Load ALL options
+add_action ( 'init', 'nuts_load_all_options' );
+// Add metaboxes for post editor
+add_action( 'add_meta_boxes', 'nuts_add_custom_box' );
+// Save postmeta when saving a post
+add_action( 'pre_post_update', 'nuts_save_postdata' );
 
 
 
@@ -75,14 +80,26 @@ function nuts_make_admin_css () {
 
 
 
-// This function compiles the frontend style.css from 1. /less/, 2. /less/media/
+// This function compiles the frontend style.css from 1. Variables enabled for LESS 2. /less/, 3. /less/media/
 function nuts_make_front_css () {
+
+	global $nuts_options_array;
 
 	require_once "lib/lessphp/Less.php";
 	
 	$base_less = '';
 	$media_less = '';
-
+	$less_variables = '';
+	
+	foreach ( $nuts_options_array as $option ) {
+	
+		if ( nuts_is_primary_section ( $option["section"] ) ) {
+			if ( isset ( $option["less"] ) and ( $option["less"] == true ) )
+				$less_variables .= '@' . $option["name"] . ': ' . nuts_get_value ( $option["name"] ) . ';';
+		}
+	
+	}
+	
 	$files = glob ( dirname ( dirname ( __FILE__ ) ) . '/less/*.less' );
 	foreach ( $files as $file ) {
 		$base_less .= '@import "' . $file . '";
@@ -97,6 +114,7 @@ function nuts_make_front_css () {
 	}
 	
 	$parser = new Less_Parser ();
+	$parser->parse ( $less_variables );
 	$parser->parse ( $base_less );
 	$parser->parse ( $media_less );
 	$css = $parser->getCss ();
@@ -112,7 +130,7 @@ function nuts_make_front_css () {
 // Displays an error message in an alert box
 function nuts_error ( $msg ) {
 
-	echo '<p class="error">' . $msg . '</p>';
+	echo '<p class="nuts-error">' . $msg . '</p>';
 
 }
 
@@ -158,9 +176,9 @@ function nuts_load_data_types () {
 
 
 // Read all options that are present in the 'options' directory
-function nuts_load_all_options ( $file_dir, $options_dir = "options" ) {
+function nuts_load_all_options () {
 
-	$files = glob ( $file_dir . '/' . $options_dir . '/*.php' );
+	$files = glob ( dirname ( dirname ( __FILE__ ) ) . '/options/*.php' );
 	foreach ( $files as $file ) {
 		nuts_loader ( $file );
 	}
@@ -228,6 +246,98 @@ function nuts_section_registered ( $section ) {
 
 
 
+// Collects the sections for the $post_type requested. If no post type is selected, it returns the Theme Options sections.
+function nuts_get_sections ( $post_type = "theme_options" ) {
+
+	global $nuts_sections;
+
+	$output_sections = array();
+	
+	if ( $post_type == "theme_options" ) {
+	
+		foreach ( $nuts_sections as $section ) {
+			if ( strstr ( $section["name"], "::" ) == false )  {
+				$output_sections[] = $section;
+			}
+		}
+	
+	}
+	
+	else {
+	
+		foreach ( $nuts_sections as $section ) {
+			if ( strstr ( $section["name"], "::", true ) == $post_type )  {
+				$output_sections[] = $section;
+			}
+		}
+	
+	}
+	
+	return $output_sections;
+
+}
+
+
+// Gets the pure form reference name based on the option name
+function nuts_form_ref ( $option_name ) {
+
+    global $nuts_options_array;
+
+	if ( strstr ( $nuts_options_array[$option_name]["section"], "::" ) != false ) {
+		
+		$value = explode ( "::", $nuts_options_array[$option_name]["section"] );
+		
+		return $value[1] . '_' . $option_name;
+	
+	}
+	
+	return 'nuts_theme_options[' . $option_name . ']';
+    
+}
+
+
+
+
+
+// Gets the section name based on the option name
+function nuts_get_section ( $option_name ) {
+
+    global $nuts_options_array;
+
+	if ( strstr ( $nuts_options_array[$option_name]["section"], "::" ) != false ) {
+		
+		$value = explode ( "::", $nuts_options_array[$option_name]["section"] );
+		
+		return $value[1];
+	
+	}
+	
+	return 'nuts_theme_options';
+    
+}
+
+
+
+
+// Gets all options for $section and returns an array of them.
+function nuts_options_by_section ( $section ) {
+
+    global $nuts_options_array;
+
+    $result = array();
+    
+    foreach ( $nuts_options_array as $option ) {
+    
+		if ( $option["section"] == $section ) $result[] = $option;
+    
+    }
+    
+    return $result;
+
+}
+
+
+
 
 // Initializes the Theme Options
 function nuts_admin_init () {
@@ -245,10 +355,12 @@ function nuts_admin_init () {
 	);
 	
 	$loaded_sections = array();
+	
 
 	// Add the option fields
 	foreach ( $nuts_options_array as $setting ) {
 	
+		// Dynamically create sections if not registered yet.
 		if ( !in_array ( $setting["section"], $loaded_sections ) ) {
 		
 			add_settings_section(
@@ -275,15 +387,19 @@ function nuts_admin_init () {
 	
 		if ( !isset ( $setting["type"] ) ) $setting["type"] = "";
 	
-		add_settings_field (
-			$setting["name"],
-			$setting["title"],
-			'nuts_theme_options_callback',
-			'nuts_theme_options',
-			$setting["section"],
-			array( 	'name' => $setting["name"],
-					'type' => $setting["type"] ) 
-		);  
+		if ( strstr ( $setting["section"], "::" ) == false ) {
+	
+			add_settings_field (
+				$setting["name"],
+				$setting["title"],
+				'nuts_theme_options_callback',
+				'nuts_theme_options',
+				$setting["section"],
+				array( 	'name' => $setting["name"],
+						'type' => $setting["type"] ) 
+			);  
+		
+		}
 	
 	}	
 
@@ -348,31 +464,72 @@ function nuts_theme_options_callback ( $args ) {
 
 
 
+function nuts_get_value ( $name ) {
+
+    global $nuts_options_array;
+    
+    if ( !isset ( $nuts_options_array[$name] ) ) return false;
+    
+    else {
+		
+		if ( isset ( $nuts_options_array[$name]["type"] ) ) {
+
+			$type_func = "nuts_get_" . $nuts_options_array[$name]["type"];
+			return $type_func ( $name, $nuts_options_array[$name] );
+
+		}
+
+		else return '';		
+		
+    }
+
+}
+
+
+
+
+function nuts_is_primary_section ( $section ) {
+
+	if ( strstr ( $section, "::" ) == false ) return true;
+	
+	else return false;
+
+}
+
+
+
+
+
 // This is the modified version of WP's do_settings_sections that allows us to use jQuery UI tabs in the Theme Options page.
-function nuts_settings_sections( $page ) {
-	global $wp_settings_sections, $wp_settings_fields, $nuts_sections;
+function nuts_settings_sections ( $page ) {
+	global $wp_settings_sections, $wp_settings_fields;
 
 	if ( ! isset( $wp_settings_sections[$page] ) )
 		return;
 
 	foreach ( (array) $wp_settings_sections[$page] as $section ) {
 	
-		echo '<div id="' . $section["id"] . '">';
+		if ( nuts_is_primary_section ( $section["id"] ) == true ) {
 	
-		if ( $section['title'] )
-			echo "<h3>{$section['title']}</h3>\n";
+			echo '<div id="' . $section["id"] . '">';
+		
+			if ( $section['title'] )
+				echo "<h3>{$section['title']}</h3>\n";
 
-		if ( $section['callback'] )
-			call_user_func( $section['callback'], $section );
+			if ( $section['callback'] )
+				call_user_func( $section['callback'], $section );
 
-		if ( ! isset( $wp_settings_fields ) || !isset( $wp_settings_fields[$page] ) || !isset( $wp_settings_fields[$page][$section['id']] ) )
-			continue;
-		echo '<table class="form-table">';
-		do_settings_fields( $page, $section['id'] );
-		echo '</table>
-		</div>';
+			if ( ! isset( $wp_settings_fields ) || !isset( $wp_settings_fields[$page] ) || !isset( $wp_settings_fields[$page][$section['id']] ) )
+				continue;
+			echo '<table class="form-table">';
+			do_settings_fields( $page, $section['id'] );
+			echo '</table>
+			</div>';
+			
+		}
 	}
 }
+
 
 
 
@@ -387,26 +544,29 @@ function nuts_theme_options () {
             ' . screen_icon() . '
             <h2 id="nuts-options-main-title">My Settings</h2>           
             <form method="post" action="options.php">';
+            
+	// The number of sections to be created for Theme Options page
+	$nuts_to_sections = nuts_get_sections ();
+	
 
-// Launch the tabbed layout only if there are more than 1 sections defined            
-	if ( count ( $nuts_sections ) > 1 ) {
+	// Launch the tabbed layout only if there are more than 1 sections defined            
+	if ( count ( $nuts_to_sections ) > 1 ) {
 		echo '<div id="nuts-settings-tabs">
 				<ul class="nav-tab-wrapper">';
             
-		$i = 1;
-		foreach ( $nuts_sections as $section ) {
+		foreach ( $nuts_to_sections as $section ) {
 			echo '<li><a class="nav-tab';
 			echo '" href="#' . $section["name"] . '">' . $section["tab"] . '</a></li>';
-			$i++;
 		}
 			
 		echo '</ul>
 		';  
     }
     
-           
+	// Output the sections           
 	nuts_settings_sections ( 'nuts_theme_options' );
-    
+
+	// There was an open div if we used the tabbed layout	
     if ( count ( $nuts_sections ) > 1 ) echo '</div>';
     
 	settings_fields ( 'nuts_theme_options' );
@@ -415,6 +575,132 @@ function nuts_theme_options () {
 	
 }
 
+
+
+
+function nuts_add_custom_box ( $post_type ) {
+
+    $sections = nuts_get_sections ( $post_type );
+    
+    foreach ( $sections as $section ) {
+    
+		$dname = explode ( "::", $section["name"] );
+
+        add_meta_box(
+            $dname[1],
+            $section["title"],
+            'nuts_inner_custom_box',
+            $post_type,
+            'normal',
+            'low',
+            array ( "section" => $section["name"], "description" => $section["description"] )
+        );
+        
+    }
+}
+
+
+
+
+
+function nuts_inner_custom_box ( $post, $metabox ) {
+
+	// Add an nonce field so we can check for it later.
+	wp_nonce_field ( 'nuts_inner_custom_box', 'nuts_inner_custom_box_nonce' );
+
+	if ( $metabox["args"]["description"] != '' ) echo $metabox["args"]["description"];
+	
+	
+	// Selects all options from $nuts_options_array which are in the current section
+	$options = nuts_options_by_section ( $metabox["args"]["section"] );
+	
+	foreach ( $options as $option ) {
+	
+		if ( $option["type"] == "" ) nuts_error ( 'No data type was set up for option: ' . $option["name"] );
+		
+		elseif ( !nuts_type_registered ( $option["type"] ) ) nuts_error ( 'Invalid data type (' . $option["type"] . ') for option: ' . $option["name"] );
+		
+		else {
+			
+			$meta_key = '_' . nuts_get_section ( $option["name"] );
+			
+			if ( get_post_meta ( $post->ID, $meta_key ) == "" ) $values = array();
+				else $values = get_post_meta ( $post->ID, $meta_key );
+				
+			if ( !isset ( $values[0][$option["name"]] ) ) $values[0][$option["name"]] = "";
+				
+			echo '<div class="clearfix meta-option">';
+				
+			echo '<span class="meta-option-label">' . $option["title"] . '</span>';
+			
+			$type_func = "nuts_type_" . $option["type"] . "_field";
+			
+			$type_func ( $option["name"], $values[0][$option["name"]] );
+			
+			echo '</div><div class="clearfix"></div>';
+
+		}
+		
+	}
+
+	echo '<div class="clearfix"></div>';
+
+}
+
+
+
+function nuts_save_postdata( $post_id ) {
+
+	// Check if our nonce is set.
+	if ( ! isset( $_POST['nuts_inner_custom_box_nonce'] ) )
+	return $post_id;
+
+	$nonce = $_POST['nuts_inner_custom_box_nonce'];
+
+	// Verify that the nonce is valid.
+	if ( !wp_verify_nonce ( $nonce, 'nuts_inner_custom_box' ) )	return $post_id;
+
+	// If this is an autosave, our form has not been submitted, so we don't want to do anything.
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+		return $post_id;
+
+	// Check the user's permissions.
+	if ( 'page' == $_POST['post_type'] ) {
+
+	if ( ! current_user_can( 'edit_page', $post_id ) )
+		return $post_id;
+
+	} else {
+
+	if ( ! current_user_can( 'edit_post', $post_id ) )
+		return $post_id;
+	}
+
+	/* OK, its safe for us to save the data now. */
+
+	// Update the meta field in the database.
+
+	$sections = nuts_get_sections ( get_post_type ( $post_id ) );
+	
+	foreach ( $sections as $section ) {
+
+		$options = nuts_options_by_section ( $section["name"] );
+		$data = array();
+		
+		foreach ( $options as $option ) {
+	
+			$sn = nuts_form_ref ( $option["name"] );
+			$data[$option["name"]] = $_POST[$sn];
+			
+		}
+
+		$sec = explode ( "::", $section["name"] );
+		update_post_meta( $post_id, '_' . $sec[1], $data );
+		unset ( $data );
+		
+	}
+
+}
 
 
 
@@ -430,9 +716,9 @@ function nuts_front_scripts( ) {
 // Load the scripts needed in Theme Options
 function nuts_admin_scripts( ) {
 
-	wp_enqueue_style( 'jquery-ui-style', get_template_directory_uri() . '/nuts/css/admin.css' );
 	wp_enqueue_script( 'jquery-ui-tabs', '', array('jquery', 'jquery-ui-core') );
 	wp_enqueue_script( 'nuts-admin-scripts', get_template_directory_uri() . '/nuts/script/admin-scripts.js', array('jquery', 'jquery-ui-tabs') );
+	wp_enqueue_style( 'nuts-admin-style', get_template_directory_uri() . '/nuts/css/admin.css' );
 
 }
 

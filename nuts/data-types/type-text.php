@@ -17,7 +17,7 @@ function nuts_type_text_field ( $name, $value ) {
 		else $size = DEFAULT_TEXT_SIZE;
 
 	echo '<div class="text">
-			<input type="text" name="nuts_theme_options[' . $name . ']" id="' . $name . '" value="' . $value . '"';
+			<input type="text" name="' . nuts_form_ref ( $name ) . '" id="' . $name . '" value="' . $value . '"';
 
 	if ( $size > 0 ) echo ' maxlength="' . $size . '"';
 			

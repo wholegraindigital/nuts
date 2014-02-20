@@ -20,6 +20,14 @@ $nuts_second_section = array (
 );
 nuts_register_section ( $nuts_second_section );
 
+$nuts_post_metabox = array (
+	"name"			=> "post::first_metabox",
+	"title"			=> "Metabox section",
+	"description"	=> "This is an example metabox section",
+	"tab"			=> ""
+);
+nuts_register_section ( $nuts_post_metabox );
+
 
 
 ?>

@@ -11,9 +11,6 @@
 <?php wp_head(); ?>
 
 
-<style>
-	h1 { color: <?php nuts_color('color1'); ?> }
-</style>
 </head>
     
     <div id="wrapper">

@@ -11,7 +11,7 @@ function nuts_type_select_field ( $name, $id ) {
 	global $nuts_options_array;
 	
 
-	echo '<select name="nuts_theme_options[' . $name . ']" id="' . $name . '">';
+	echo '<select name="' . nuts_form_ref ( $name ) . '" id="' . $name . '">';
 
 	foreach ( $nuts_options_array[$name]["values"] as $key => $value ) {
 		echo '<option value="' . $key . '"';

@@ -2,9 +2,9 @@
 
 // Text field
 $nuts_option_array = array ( 
-        "name"			=> "color1",
-        "title"			=> "Color picker",
-        "description"	=> "Please select a color.",
+        "name"			=> "h1color",
+        "title"			=> "Color picker for H1 elements",
+        "description"	=> "Please select a color for H1 elements.",
         "section"		=> "nuts_second_section",
         "type"			=> "color",
         "default"		=> "#3366aa",
