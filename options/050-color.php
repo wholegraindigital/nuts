@@ -1,6 +1,6 @@
 <?php 
 
-// Text field
+// Color field
 $nuts_option_array = array ( 
         "name"			=> "color1",
         "title"			=> "Color picker",
@@ -11,10 +11,6 @@ $nuts_option_array = array (
         "less"			=> true
 );
 nuts_register_option ( $nuts_option_array );
-
-
-// Now set up the settings for the Theme Options page
-
 
 
 

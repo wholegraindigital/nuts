@@ -22,7 +22,7 @@ nuts_register_section ( $nuts_second_section );
 
 $nuts_post_metabox = array (
 	"name"			=> "post::first_metabox",
-	"title"			=> "Metabox section",
+	"title"			=> "Registered Metabox section",
 	"description"	=> "This is an example metabox section",
 	"tab"			=> ""
 );

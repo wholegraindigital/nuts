@@ -6,10 +6,6 @@
             <div class="main-content-inner">
             
 				<?php get_template_part ( 'parts/loop' ); ?>
-				<?php nuts_image ("image1", "medium"); ?>
-				<?php echo nuts_get_text("text1"); ?>
-				<?php nuts_text("gkkhghk"); ?>
-				<?php echo "The sky is " . nuts_get_select("select1"); ?>
             </div>
         </div>
         

@@ -4,7 +4,7 @@
 
 
 
-define	( "DEFAULT_IMAGE_SIZE",	"full");
+define	( "DEFAULT_IMAGE_SIZE",	"medium");
 
 
 
@@ -67,22 +67,19 @@ function nuts_get_image_size ( $name ) {
 
 
 // Gives you the image object based on the option name
-function nuts_get_image_object ( $name, $size = DEFAULT_IMAGE_SIZE ) {
+function nuts_get_image ( $name, $size = "" ) {
 
 	global $nuts_options_array;
 
-	if ( get_option ( 'nuts_theme_options' ) == "" ) return $nuts_options_array[$name];
-		else $options = get_option ( 'nuts_theme_options' );
-	if ( !array_key_exists ( $name, $options ) ) return '';
+	$img_id = nuts_get_option ( $name );
 
-		
-	if ( $size == "" ) $size = nuts_get_image_size ( $name );
-
+	if ( is_numeric ( $img_id ) ) {
+		if ( $size == "" ) $size = nuts_get_image_size ( $name );
+		$value = wp_get_attachment_image ( $img_id, $size );
+	}
+	else $value = $img_id;
 	
-	$id = $options[$name];
-	
-	$value = wp_get_attachment_image( $id, $size );
-	
+	if ( $img_id == "" ) $value = $nuts_options_array[$name]["default"];
 
 	return $value;
 
@@ -92,25 +89,19 @@ function nuts_get_image_object ( $name, $size = DEFAULT_IMAGE_SIZE ) {
 
 
 // Gives you the image URL based on the option name
-function nuts_get_image ( $name, $size = DEFAULT_IMAGE_SIZE ) {
+function nuts_get_image_url ( $name, $size = "" ) {
 
 	global $nuts_options_array;
+	
+	$img_id = nuts_get_option ( $name );
 
+	if ( is_numeric ( $img_id ) ) {
+		if ( $size == "" ) $size = nuts_get_image_size ( $name );
+		$value = wp_get_attachment_image_src ( $img_id, $size );
+		$value = $value[0];
+	}
+	else $value = $img_id;
 	
-	if ( get_option ( 'nuts_theme_options' ) == "" ) return $nuts_options_array[$name];
-		else $options = get_option ( 'nuts_theme_options' );
-	if ( !array_key_exists ( $name, $options ) ) return '';
-	
-	
-	
-	if ( $size == "" ) $size = nuts_get_image_size ( $name );
-	
-	
-	$id = $options[$name];
-	
-	$value = wp_get_attachment_url( $id, $size );
-	
-
 	return $value;
 
 }
@@ -119,15 +110,15 @@ function nuts_get_image ( $name, $size = DEFAULT_IMAGE_SIZE ) {
 
 
 // This is the function that returns the image in the size defined in its registered array
-function nuts_image_object ( $name, $size = "", $print = "img" ) {
+function nuts_image ( $name, $size = "", $print = "img" ) {
 
 	global $nuts_options_array;
 	
-	if ( $size == "" ) $size = $nuts_options_array[$name]["size"];
+	if ( $size == "" ) $size = nuts_get_image_size ( $name );
 	if ( $print == "" ) $print = "img";
 	
 	if ( $print == "img" ) {
-		$value = nuts_get_image_object ( $name, $size );
+		$value = nuts_get_image ( $name, $size );
 	}
 	
 	elseif ( $print == "url" ) {

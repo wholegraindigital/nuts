@@ -125,14 +125,18 @@ table {
 /* Some basic Mixins that makes your life easier and fixes some browser issues. */
 /* Custom.less - put your LESS code here */
 div {
-  background-image: -webkit-linear-gradient(top, #29309e, #dddddd);
-  background-image: -moz-linear-gradient(top, #29309e, #dddddd);
-  background-image: -o-linear-gradient(top, #29309e, #dddddd);
-  background-image: linear-gradient(to bottom, #29309e 0%, #dddddd 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#29309e, endColorstr=#dddddd, GradientType=0);
+  background-image: -webkit-linear-gradient(top, #2aa32c, #dddddd);
+  background-image: -moz-linear-gradient(top, #2aa32c, #dddddd);
+  background-image: -o-linear-gradient(top, #2aa32c, #dddddd);
+  background-image: linear-gradient(to bottom, #2aa32c 0%, #dddddd 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2aa32c, endColorstr=#dddddd, GradientType=0);
+  border: 3px solid #ff0000;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
 }
 h1 {
-  color: #191900;
+  color: #eeee22;
   font-size: 32px;
   font-weight: bold;
 }

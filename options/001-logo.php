@@ -21,8 +21,8 @@ nuts_register_option ( $nuts_option_array );
 // This is a shortcut for the nuts_image() function.
 function nuts_logo ( $a = "home" ) {
 
-	if ( $a == "home" ) echo '<a href="' . get_bloginfo ('url') . '">' . nuts_get_image_object ( "nuts_logo", nuts_get_image_size ( "nuts_logo" ) ) . '</a>';
-	if ( $a == "img" ) echo nuts_get_image_object ( "nuts_logo", nuts_get_image_size ( "nuts_logo" ) );
+	if ( $a == "home" ) echo '<a href="' . get_bloginfo ('url') . '">' . nuts_get_image ( "nuts_logo", nuts_get_image_size ( "nuts_logo" ) ) . '</a>';
+	if ( $a == "img" ) echo nuts_get_image ( "nuts_logo", nuts_get_image_size ( "nuts_logo" ) );
 
 }
 

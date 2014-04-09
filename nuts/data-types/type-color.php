@@ -48,14 +48,11 @@ function nuts_type_color_field ( $name, $value ) {
 // Gives you the image object based on the option name
 function nuts_get_color ( $name ) {
 
-	global $nuts_options_array;
+	$color = nuts_get_option ( $name );
 
-	if ( get_option ( 'nuts_theme_options' ) == "" ) return nuts_get_default_color ( $name );
-		else $options = get_option ( 'nuts_theme_options' );
-	if ( !array_key_exists ( $name, $options ) ) return nuts_get_default_color ( $name );
-	
+	if ( $color == "" ) return nuts_get_default_color ( $name );
 
-	return $options[$name];
+	return $color;
 
 }
 

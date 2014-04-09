@@ -32,17 +32,9 @@ function nuts_get_select ( $name ) {
 
 	global $nuts_options_array;
 
-	if ( get_option ( 'nuts_theme_options' ) == "" ) return $nuts_options_array[$name]["default"];
-		else $options = get_option ( 'nuts_theme_options' );
-	if ( !array_key_exists ( $name, $options ) ) return $nuts_options_array[$name]["default"];
+	$id = nuts_get_option ( $name );
 
-
-	$id = $options[$name];
-	
-	$value = $nuts_options_array[$name]["values"][$id];
-	
-
-	return $value;
+	return $nuts_options_array[$name]["values"][$id];
 
 }
 

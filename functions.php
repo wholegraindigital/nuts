@@ -16,7 +16,6 @@ function fullflow_setup () {
 	register_nav_menu( 'primary', __( 'Primary Menu', 'nuts' ) );
     register_nav_menu( 'footermenu', __( 'Footer Menu', 'nuts' ) );
     
-//    nuts_image_sizes ();
 }
 
 add_action ( 'after_setup_theme', 'fullflow_setup' );

@@ -7,13 +7,10 @@ $nuts_image_array = array (
         "description"	=> "Please upload an optional image here.",
         "section"		=> "nuts_first_section",
         "type"			=> "image",
-        "size"			=> "thumb"
+        "size"			=> "thumbnail",
+        "default"		=> "No image found."
 );
 nuts_register_option ( $nuts_image_array );
-
-
-// Now set up the settings for the Theme Options page
-
 
 
 

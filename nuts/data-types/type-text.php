@@ -31,14 +31,7 @@ function nuts_type_text_field ( $name, $value ) {
 // Gives you the image object based on the option name
 function nuts_get_text ( $name ) {
 
-	global $nuts_options_array;
-
-	if ( get_option ( 'nuts_theme_options' ) == "" ) return $nuts_options_array[$name]["default"];
-		else $options = get_option ( 'nuts_theme_options' );
-	if ( !array_key_exists ( $name, $options ) ) return $nuts_options_array[$name]["default"];
-	
-
-	return $options[$name];
+	return nuts_get_option ( $name );
 
 }
 

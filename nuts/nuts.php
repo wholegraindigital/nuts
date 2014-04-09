@@ -203,6 +203,8 @@ function nuts_register_option ( $narr ) {
 
 
 
+
+
 // Adds extra info for the tabs in the Theme Options
 function nuts_register_section ( $narr ) {
         
@@ -464,6 +466,7 @@ function nuts_theme_options_callback ( $args ) {
 
 
 
+// Gets the value of a variable from wpdb
 function nuts_get_value ( $name ) {
 
     global $nuts_options_array;
@@ -475,7 +478,7 @@ function nuts_get_value ( $name ) {
 		if ( isset ( $nuts_options_array[$name]["type"] ) ) {
 
 			$type_func = "nuts_get_" . $nuts_options_array[$name]["type"];
-			return $type_func ( $name, $nuts_options_array[$name] );
+			return $type_func ( $name );
 
 		}
 
@@ -488,6 +491,7 @@ function nuts_get_value ( $name ) {
 
 
 
+// Checks if this is primary (Theme Options) or secondary (Post Metabox) section
 function nuts_is_primary_section ( $section ) {
 
 	if ( strstr ( $section, "::" ) == false ) return true;
@@ -495,7 +499,6 @@ function nuts_is_primary_section ( $section ) {
 	else return false;
 
 }
-
 
 
 
@@ -578,6 +581,7 @@ function nuts_theme_options () {
 
 
 
+// Adds the post metaboxes from the registered sections
 function nuts_add_custom_box ( $post_type ) {
 
     $sections = nuts_get_sections ( $post_type );
@@ -602,7 +606,7 @@ function nuts_add_custom_box ( $post_type ) {
 
 
 
-
+// Display contents of custom metabox for post types
 function nuts_inner_custom_box ( $post, $metabox ) {
 
 	// Add an nonce field so we can check for it later.
@@ -649,6 +653,7 @@ function nuts_inner_custom_box ( $post, $metabox ) {
 
 
 
+// Saves post meta into the database
 function nuts_save_postdata( $post_id ) {
 
 	// Check if our nonce is set.
@@ -701,6 +706,42 @@ function nuts_save_postdata( $post_id ) {
 	}
 
 }
+
+
+// Gets the option array from Theme Options or Post metabox and returns an array if any values found --- returns default value or empty string if no value found in database.
+function nuts_get_option ( $name ) {
+
+	global $nuts_options_array, $post;
+	
+	if( !is_object ( $post ) ) $id = 0; 
+	else $id = get_the_ID();
+	$meta_key = '_' . nuts_get_section ( $name );
+	
+	if ( ( empty ( get_option ( 'nuts_theme_options' ) ) ) && ( empty ( get_post_meta ( $id, $meta_key ) ) ) ) return $nuts_options_array[$name]["default"];
+	
+	else {
+		
+		if ( !nuts_is_primary_section ( $nuts_options_array[$name]["section"] ) ) {
+			if ( !empty ( get_post_meta ( $id, $meta_key ) ) ) {
+				$options = get_post_meta ( $id, $meta_key );
+				$options = $options[0];
+			}
+			else if ( isset ( $nuts_options_array[$name]["default"] ) ) return $nuts_options_array[$name]["default"];
+				else return '';
+		}
+		
+		else {
+			$options = get_option ( 'nuts_theme_options' );
+		}
+		
+	}
+	
+	if ( !array_key_exists ( $name, $options ) ) return $nuts_options_array[$name]["default"];
+	
+	return $options[$name];
+
+}
+
 
 
 
