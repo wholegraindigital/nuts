@@ -70,6 +70,7 @@
   padding: 4px 12px;
   color: #a00;
 }
+/* Enter your custom LESS code for different media sizes */
 .uploader .image-container {
   height: 150px;
   width: 150px;
@@ -80,7 +81,7 @@
 .uploader .image-container .closer {
   width: 32px;
   height: 32px;
-  background-image: url(../img/admin-icons.png);
+  background-image: url("../../../img/admin-icons.png");
   position: absolute;
   top: -5px;
   right: -5px;

@@ -1,25 +1,14 @@
 <?php get_header(); ?>
 
 <div id="contentWrapper">
-    <div id="content" class="backImage">
-        <div class="main-content">
-            <div class="main-content-inner">
+    <div id="content">
             
-				<?php get_template_part ( 'parts/loop' ); ?>
-				<?php nuts_image ("image1", "medium"); ?>
-				<?php echo nuts_get_text("text1"); ?>
-				<?php nuts_text("gkkhghk"); ?>
-				<?php echo "The sky is " . nuts_get_select("select1"); ?>
-            </div>
-        </div>
-        
-        <?php if( is_home() ) { ?>
-        <div class="dark-gradient">&nbsp;</div>
-		<?php } ?>
-    </div>
+		<?php get_template_part ( 'loop' ); ?>
+		<?php echo nuts_get_value ( 'color45' ); ?>
+
+    </div><!-- content -->
+</div><!-- contentWrapper -->
     
-    <span class="previous-img home_pre"></span>
-    <span class="next-img home_next"></span>
-</div>
-    
+<?php get_sidebar(); ?>
+
 <?php get_footer(); ?>

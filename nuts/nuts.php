@@ -40,7 +40,7 @@ $nuts_less_files = array ();
 
 
 
-// This function compiles the admin.css from 1. /less/, 2. /data-types/*.less, 3. /less/media/
+// This function compiles the admin.css from 1. /less/, 2. /data-types/*.less
 function nuts_make_admin_css () {
 
 	global $nuts_less_files;
@@ -49,9 +49,8 @@ function nuts_make_admin_css () {
 	
 	$base_less = '';
 	$addon_less = '';
-	$media_less = '';
-
-	$files = glob ( dirname ( __FILE__ ) . '/less/*.less' );
+	
+	$files = glob ( dirname ( __FILE__ ) . '/style/admin/*.less' );
 	foreach ( $files as $file ) {
 		$base_less .= '@import "' . $file . '";
 		';
@@ -62,18 +61,12 @@ function nuts_make_admin_css () {
 		';
 	}
 	
-	$files = glob ( dirname ( __FILE__ ) . '/less/media/*.less' );
-	foreach ( $files as $file ) {
-		$media_less .= '@import "' . $file . '";
-		';
-	}
 	
 	$parser = new Less_Parser ();
 	$parser->parse ( $base_less );
 	$parser->parse ( $addon_less );
-	$parser->parse ( $media_less );
 	$css = $parser->getCss ();
-	$nuts_css = fopen( dirname ( __FILE__ ) . '/css/admin.css', "w");
+	$nuts_css = fopen( dirname ( __FILE__ ) . '/style/admin/css/admin.css', "w");
 	if ( !fwrite ( $nuts_css, $css ) ) nuts_error ( 'Could not write CSS file - check your file permissions!' );
 	
 }
@@ -88,7 +81,7 @@ function nuts_make_front_css () {
 	require_once "lib/lessphp/Less.php";
 	
 	$base_less = '';
-	$media_less = '';
+	$theme_less = '';
 	$less_variables = '';
 	
 	foreach ( $nuts_options_array as $option ) {
@@ -100,25 +93,25 @@ function nuts_make_front_css () {
 	
 	}
 	
-	$files = glob ( dirname ( dirname ( __FILE__ ) ) . '/less/*.less' );
+	$files = glob ( dirname ( dirname ( __FILE__ ) ) . '/nuts/style/*.less' );
 	foreach ( $files as $file ) {
 		$base_less .= '@import "' . $file . '";
 		';
 		
 	}
 	
-	$files = glob ( dirname ( dirname ( __FILE__ ) ) . '/less/media/*.less' );
+	$files = glob ( dirname ( dirname ( __FILE__ ) ) . '/style/*.less' );
 	foreach ( $files as $file ) {
-		$media_less .= '@import "' . $file . '";
+		$theme_less .= '@import "' . $file . '";
 		';
 	}
 	
 	$parser = new Less_Parser ();
 	$parser->parse ( $less_variables );
 	$parser->parse ( $base_less );
-	$parser->parse ( $media_less );
+	$parser->parse ( $theme_less );
 	$css = $parser->getCss ();
-	$nuts_css = fopen( dirname ( dirname ( __FILE__ ) ) . '/css/style.css', "w");
+	$nuts_css = fopen( dirname ( dirname ( __FILE__ ) ) . '/style/css/style.css', "w");
 	if ( !fwrite ( $nuts_css, $css ) ) nuts_error ( 'Could not write CSS file - check your file permissions!' );
 	
 }
@@ -241,6 +234,18 @@ function nuts_section_registered ( $section ) {
 	global $nuts_sections;
 
 	if ( array_key_exists ( $section, $nuts_sections ) ) return true;
+	else return false;
+
+}
+
+
+
+// Checks if an option is registered
+function nuts_option_registered ( $name ) {
+
+	global $nuts_options_array;
+
+	if ( array_key_exists ( $name, $nuts_options_array ) ) return true;
 	else return false;
 
 }
@@ -749,7 +754,7 @@ function nuts_get_option ( $name ) {
 // Load the scripts needed in the front-end
 function nuts_front_scripts( ) {
 
-	wp_enqueue_style( 'front-style', get_template_directory_uri() . '/css/style.css' );
+	wp_enqueue_style( 'front-style', get_template_directory_uri() . '/style/css/style.css' );
 
 }
 
@@ -759,7 +764,7 @@ function nuts_admin_scripts( ) {
 
 	wp_enqueue_script( 'jquery-ui-tabs', '', array('jquery', 'jquery-ui-core') );
 	wp_enqueue_script( 'nuts-admin-scripts', get_template_directory_uri() . '/nuts/script/admin-scripts.js', array('jquery', 'jquery-ui-tabs') );
-	wp_enqueue_style( 'nuts-admin-style', get_template_directory_uri() . '/nuts/css/admin.css' );
+	wp_enqueue_style( 'nuts-admin-style', get_template_directory_uri() . '/nuts/style/admin/css/admin.css' );
 
 }
 

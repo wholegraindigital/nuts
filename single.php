@@ -7,7 +7,7 @@
 
     </div><!-- content -->
 </div><!-- contentWrapper -->
-
+    
 <?php get_sidebar(); ?>
 
 <?php get_footer(); ?>

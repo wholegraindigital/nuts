@@ -3,7 +3,6 @@
 	<article>
 		<h1><?php the_title(); ?></h1>
 		<?php the_content(); ?>
-		<?php echo "The color is: " . nuts_get_value ("select1"); ?>
 	</article>
 	
 <?php endwhile; else: ?>

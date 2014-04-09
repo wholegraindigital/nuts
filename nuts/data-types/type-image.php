@@ -126,13 +126,29 @@ function nuts_image ( $name, $size = "", $print = "img" ) {
 	}
 	
 	else {
-		$value = "Invalid parameter: " . $print;
+		nuts_error ( "Invalid parameter: " . $print );
+		return;
 	}
 	
 	echo $value;
 	
 }
 
+
+
+// This is a special function that shows your "nuts_logo" option as the site logo, with linking it to the Home page
+function nuts_logo ( $a = "home" ) {
+
+	if ( nuts_option_registered ( "nuts_logo" ) ) {
+
+		if ( $a == "home" ) echo '<a href="' . get_bloginfo ('url') . '">' . nuts_get_image ( "nuts_logo", nuts_get_image_size ( "nuts_logo" ) ) . '</a>';
+		if ( $a == "img" ) echo nuts_get_image ( "nuts_logo", nuts_get_image_size ( "nuts_logo" ) );
+
+	}
+	
+	else nuts_error ( "Please register a logo first before calling the nuts_logo() function." );
+		
+}
 
 
 ?>

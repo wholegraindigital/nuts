@@ -1,4 +1,3 @@
-/* Reset the most basic selectors for the same look in all browsers. */
 html,
 body,
 div,
@@ -122,8 +121,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-/* Some basic Mixins that makes your life easier and fixes some browser issues. */
-/* Custom.less - put your LESS code here */
 div {
   background-image: -webkit-linear-gradient(top, #2aa32c, #dddddd);
   background-image: -moz-linear-gradient(top, #2aa32c, #dddddd);
