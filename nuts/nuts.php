@@ -1,28 +1,49 @@
 <?php 
 
+/*
+NUTS WordPress Theme Framework
+Version: 0.1
+For more information and documentation, visit [http://www.wholegraindigital.com/nuts]
+*/
 
 
 
 // Make the scripts appear only in the code of the Theme Options page, thus reducing the possibilities of interferences
 add_action ( 'admin_enqueue_scripts', 'nuts_admin_scripts' );
+
 // Load data type components
 add_action ( 'init', 'nuts_load_data_types' );
+// Load ALL options
+add_action ( 'init', 'nuts_load_all_options' );
+// Load the shortcodes
+add_action ( 'init', 'nuts_load_shortcodes' );
+
 // First collect the action hooks here
 add_action ( 'admin_menu', 'nuts_admin_init' );
 // Load admin CSS, compile from LESS files
+
 add_action ( 'wp_loaded', 'nuts_make_admin_css' );
 // Load front end CSS, compile from LESS files
 add_action ( 'wp_loaded', 'nuts_make_front_css' );
 // Load front end CSS, compile from LESS files
+
 add_action ( 'wp_enqueue_scripts', 'nuts_front_scripts' );
-// Load ALL options
-add_action ( 'init', 'nuts_load_all_options' );
 // Add metaboxes for post editor
+
 add_action( 'add_meta_boxes', 'nuts_add_custom_box' );
 // Save postmeta when saving a post
+
 add_action( 'pre_post_update', 'nuts_save_postdata' );
+// Add the possibility to use shortcodes in text widgets
 
+add_filter( 'widget_text', 'do_shortcode' );
 
+// Security: hide the META Generator tag to make it more difficult for hackers to find out your WP version.
+remove_action( 'wp_head', 'wp_generator' );
+
+// Security: remove ?ver=x.x from css and js
+add_filter( 'style_loader_src', 'nuts_remove_cssjs_ver', 10, 2 );
+add_filter( 'script_loader_src', 'nuts_remove_cssjs_ver', 10, 2 );
 
 
 // The options array that stores all the options to be displayed in Theme Options
@@ -38,6 +59,13 @@ $nuts_data_types = array ();
 $nuts_less_files = array ();
 
 
+
+// Remove version numbers from JS and CSS files
+function nuts_remove_cssjs_ver( $src ) {
+	if( strpos( $src, '?ver=' ) )
+	$src = remove_query_arg( 'ver', $src );
+	return $src;
+}
 
 
 // This function compiles the admin.css from 1. /less/, 2. /data-types/*.less
@@ -140,7 +168,7 @@ function nuts_loader ( $filename ) {
 
 	}
 	
-	else return "File not exists:" . $filename;
+	else nuts_error ( "File not exists:" . $filename );
 	
 }
 
@@ -163,6 +191,20 @@ function nuts_load_data_types () {
 		
 	}
 	
+}
+
+
+
+// Load the shortcodes that are present in "nuts/inc/shortcodes"
+function nuts_load_shortcodes () {
+
+	$files = glob ( dirname ( __FILE__ ) . '/inc/shortcodes/*.php' );
+	foreach ( $files as $file ) {
+
+		nuts_loader ( $file );
+		
+	}
+
 }
 
 

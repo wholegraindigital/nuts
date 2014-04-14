@@ -121,6 +121,17 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+.alignleft {
+  float: left;
+}
+.alignright {
+  float: right;
+}
+.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 div {
   background-image: -webkit-linear-gradient(top, #2aa32c, #dddddd);
   background-image: -moz-linear-gradient(top, #2aa32c, #dddddd);
