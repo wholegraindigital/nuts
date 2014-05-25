@@ -45,12 +45,12 @@ nuts_register_option ( $nuts_option_array );
 
 // Color field
 $nuts_option_array = array ( 
-        "name"			=> "color1",
-        "title"			=> "Color picker",
-        "description"	=> "Please select a color.",
+        "name"			=> "acolor",
+        "title"			=> "Theme Colour Scheme",
+        "description"	=> "Please select a color. It will be the base of your colour scheme. Change it and test how your site responds to it.",
         "section"		=> "nuts_second_section",
         "type"			=> "color",
-        "default"		=> "#3366aa",
+        "default"		=> "#a5d5a3",
         "less"			=> true
 );
 nuts_register_option ( $nuts_option_array );

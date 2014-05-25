@@ -67,7 +67,7 @@ function nuts_get_image_size ( $name ) {
 
 
 // Gives you the image object based on the option name
-function nuts_get_image ( $name, $size = "" ) {
+function nuts_get_image ( $name, $size = "", $class = "" ) {
 
 	global $nuts_options_array;
 
@@ -75,7 +75,8 @@ function nuts_get_image ( $name, $size = "" ) {
 
 	if ( is_numeric ( $img_id ) ) {
 		if ( $size == "" ) $size = nuts_get_image_size ( $name );
-		$value = wp_get_attachment_image ( $img_id, $size );
+		if ( $class != "" ) $value = wp_get_attachment_image ( $img_id, $size, 0, array( "class" => $class ) );
+		else $value = wp_get_attachment_image ( $img_id, $size );
 	}
 	else $value = $img_id;
 	
@@ -141,8 +142,19 @@ function nuts_logo ( $a = "home" ) {
 
 	if ( nuts_option_registered ( "nuts_logo" ) ) {
 
-		if ( $a == "home" ) echo '<a href="' . get_bloginfo ('url') . '">' . nuts_get_image ( "nuts_logo", nuts_get_image_size ( "nuts_logo" ) ) . '</a>';
-		if ( $a == "img" ) echo nuts_get_image ( "nuts_logo", nuts_get_image_size ( "nuts_logo" ) );
+		if ( nuts_get_image ( "nuts_logo" ) != '' ) {
+	
+			if ( $a == "home" ) echo '<a href="' . get_bloginfo ('url') . '">' . nuts_get_image ( "nuts_logo", nuts_get_image_size ( "nuts_logo" ), "nuts-logo" ) . '</a>';
+			if ( $a == "img" ) echo nuts_get_image ( "nuts_logo", nuts_get_image_size ( "nuts_logo" ), "nuts-logo" );
+			
+		}
+			
+		else {
+		
+			if ( $a == "home" ) echo '<h1 class="nuts-logo"><a href="' . get_bloginfo ('url') . '">' . get_bloginfo ( "name" ) . '</a></h1>';
+			if ( $a == "img" ) echo '<h1 class="nuts-logo">' . get_bloginfo ( "name" ) . '</h1>';
+		
+		}
 
 	}
 	

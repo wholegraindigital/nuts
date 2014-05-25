@@ -1,12 +1,144 @@
 // Custom.less - put your LESS code here
 
-div {
+body {
 
-	.linear-gradient ( @color1, #ddd );
-	
-	.box-border ( red , 3px , 30px );
+	background: #fff;
+	font-family: arial;
+	font-size: 14px;
 
 }
+
+#wrapper {
+
+	max-width: 1000px;
+	margin: 0 auto;
+
+}
+
+.nuts-logo {
+
+	margin: 105px 0 30px 0;
+
+}
+
+.nuts-logo a {
+
+	text-decoration: none;
+	color: @h1color;
+
+}
+
+nav {
+
+	.menu {
+	
+		background-color: @acolor;
+		padding: 0px 14px;
+		border-radius: 30px;
+		position: relative;
+	
+		li {
+	
+			display: inline-block;
+			position: relative;
+			padding: 0;
+			
+			&:hover {
+			
+				background: desaturate(@acolor, 20%);
+			
+			}
+			
+			a, a:hover, a:visited, a:active {
+			
+				text-decoration: none;
+				color: #fff;
+				padding: 8px 15px;
+				display: block;
+			
+			}
+			
+			a:hover {
+			
+				text-decoration: underline;
+			
+			}
+			
+			ul {
+			
+				display: none;
+				position: absolute;
+				background: desaturate( @acolor, 20% );
+				padding: 10px 0 20px 0;
+				border-bottom-left-radius: 15px;
+				border-bottom-right-radius: 15px;
+			
+			}
+			
+			&:hover ul {
+			
+				display: block;
+				
+				li {
+				
+					position: relative;
+				
+					a {
+				
+						padding: 10px 32px;
+						display: block;
+						min-width: 100px;
+						text-decoration: none;
+						position: relative;
+						
+						&:hover {
+						
+							background: darken( desaturate( @acolor, 20%), 10%);
+
+						}
+						
+				
+					}
+					
+					&.menu-item-has-children > a:after {
+					
+						content: '';
+						.triangle ( 6px, #fff );
+						display: inline-block;
+						position: absolute;
+						right: 12px;
+					
+					}
+					
+					ul {
+					
+						display: none;
+						position: absolute;
+						left: 100%;
+						top: -20px;
+						border-radius: 15px;
+						padding: 20px 0;
+											
+					}
+					
+					&:hover ul {
+						
+						display: block;
+						
+						li {
+						
+							ul { display: none; }
+							&:hover ul { display: block; }
+						
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
 
 h1 {
 	

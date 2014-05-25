@@ -755,7 +755,8 @@ function nuts_save_postdata( $post_id ) {
 }
 
 
-// Gets the option array from Theme Options or Post metabox and returns an array if any values found --- returns default value or empty string if no value found in database.
+// Gets the option array from Theme Options or Post metabox and returns an array if any values found --- returns default value or empty string if no value found in database. 
+// This function is used by data types, please use it if you are writing your own data type!
 function nuts_get_option ( $name ) {
 
 	global $nuts_options_array, $post;
@@ -764,28 +765,34 @@ function nuts_get_option ( $name ) {
 	else $id = get_the_ID();
 	$meta_key = '_' . nuts_get_section ( $name );
 	
-	if ( ( empty ( get_option ( 'nuts_theme_options' ) ) ) && ( empty ( get_post_meta ( $id, $meta_key ) ) ) ) return $nuts_options_array[$name]["default"];
+
+	// If the option is connected to a post meta, let it be the return value
+	if ( !nuts_is_primary_section ( $nuts_options_array[$name]["section"] ) ) {
 	
-	else {
-		
-		if ( !nuts_is_primary_section ( $nuts_options_array[$name]["section"] ) ) {
-			if ( !empty ( get_post_meta ( $id, $meta_key ) ) ) {
-				$options = get_post_meta ( $id, $meta_key );
-				$options = $options[0];
-			}
-			else if ( isset ( $nuts_options_array[$name]["default"] ) ) return $nuts_options_array[$name]["default"];
-				else return '';
+		// If the metadata exists in the database, return it!
+		if ( metadata_exists ( 'post', $id, $meta_key ) ) {
+			$options = get_post_meta ( $id, $meta_key );
+			$options = $options[0];
 		}
-		
-		else {
-			$options = get_option ( 'nuts_theme_options' );
-		}
-		
+		// If not, return the default value defined in your options file
+		else if ( isset ( $nuts_options_array[$name]["default"] ) ) return $nuts_options_array[$name]["default"];
+			// If no default value defined, simply return an empty string
+			else return '';
 	}
 	
-	if ( !array_key_exists ( $name, $options ) ) return $nuts_options_array[$name]["default"];
+	// In the case it's not a post meta, return the value from the main options page
+	else {
+		if ( isset ( $nuts_options_array[$name]["default"] ) ) $default = $nuts_options_array[$name]["default"];
+			else $default = '';
+		$options = get_option ( 'nuts_theme_options', $default );
+	}
+		
 	
-	return $options[$name];
+	if ( is_array ($options) ) {
+		if ( !array_key_exists ( $name, $options ) ) return $nuts_options_array[$name]["default"];
+		else return $options[$name];
+	}
+	else return $nuts_options_array[$name]["default"];
 
 }
 
