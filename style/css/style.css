@@ -132,27 +132,72 @@ table {
   margin-left: auto;
   margin-right: auto;
 }
+/*
+TABLE OF CONTENTS
+-----------------
+1. Page Layout
+2. Common Elements
+3. Header
+4. Content Area
+5. Sidebar
+6. Footer
+*/
+* {
+  font-family: arial;
+}
 body {
   background: #fff;
   font-family: arial;
   font-size: 14px;
+  color: #666;
 }
 #wrapper {
+  padding-bottom: 125px;
+}
+.wrapper {
   max-width: 1000px;
   margin: 0 auto;
+}
+#contentWrapper {
+  width: 73%;
+  margin-right: 8%;
+  float: left;
+}
+#contentWrapper p {
+  line-height: 1.8em;
+  margin-bottom: 1.8em;
+}
+#right-sidebar {
+  width: 19%;
+  float: left;
+}
+.clearfix {
+  clear: both;
+}
+h1 {
+  color: #a5d5a3;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 32px 0 28px;
+}
+a {
+  color: #999;
+  text-decoration: underline;
 }
 .nuts-logo {
   margin: 105px 0 30px 0;
 }
 .nuts-logo a {
   text-decoration: none;
-  color: #eeee22;
+  color: #a5d5a3;
 }
 nav .menu {
   background-color: #a5d5a3;
-  padding: 0px 14px;
+  color: #fff;
+  padding: 0 14px;
   border-radius: 30px;
   position: relative;
+  margin-bottom: 45px;
 }
 nav .menu li {
   display: inline-block;
@@ -226,8 +271,61 @@ nav .menu li:hover ul li:hover ul li ul {
 nav .menu li:hover ul li:hover ul li:hover ul {
   display: block;
 }
-h1 {
-  color: #eeee22;
-  font-size: 32px;
+.postmeta {
+  background-color: #a5d5a3;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 30px;
+  display: inline-block;
+}
+.sidebar .widget {
+  margin-bottom: 45px;
+  padding: 0 13px;
+  font-size: 12px;
+}
+.sidebar .widget a {
+  margin-bottom: 8px;
+  display: inline-block;
+}
+.sidebar .widget .searchform {
+  border: 2px solid #a5d5a3;
+  border-radius: 30px;
+  margin: 0 -13px;
+  padding: 3px;
+}
+.sidebar .widget .searchform input[type=text] {
+  border: none;
+  width: 70%;
+  font-size: 12px;
   font-weight: bold;
+  font-family: arial;
+  color: #999;
+  margin-left: 7px;
+}
+.sidebar .widget .searchform input[type=submit] {
+  background-color: #a5d5a3;
+  color: #fff;
+  padding: 0px 4px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 0;
+  font-family: arial;
+  font-size: 12px;
+  float: right;
+}
+.widgettitle {
+  background-color: #a5d5a3;
+  color: #fff;
+  padding: 7px 14px;
+  border-radius: 30px;
+  font-weight: bold;
+  margin: 0px -13px 40px;
+  font-size: 14px;
+}
+footer {
+  background-color: #e8e8e8;
+  min-height: 20px;
+  clear: both;
+  padding-top: 30px;
 }

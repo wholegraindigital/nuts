@@ -11,23 +11,69 @@ $args = array(
 	'description'   => 'Sidebar displayed in the right column',
 	'class'         => 'right-sidebar',
 	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-	'after_widget'  => "</aside>\n",
+	'after_widget'  => '</aside>',
 	'before_title'  => '<h2 class="widgettitle">',
-	'after_title'   => "</h2>\n",
-);register_sidebar( $args );
+	'after_title'   => '</h2>'
+);
+register_sidebar( $args );
+
+$args = array(
+	'name'          => 'Footer sidebar #1',
+	'id'            => 'footer-sidebar-1',
+	'class'         => 'footer-sidebar',
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+	'after_widget'  => '</aside>',
+	'before_title'  => '<h2 class="widgettitle">',
+	'after_title'   => '</h2>'
+);
+register_sidebar( $args );
+
+$args = array(
+	'name'          => 'Footer sidebar #2',
+	'id'            => 'footer-sidebar-2',
+	'class'         => 'footer-sidebar',
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+	'after_widget'  => '</aside>',
+	'before_title'  => '<h2 class="widgettitle">',
+	'after_title'   => '</h2>'
+);
+register_sidebar( $args );
+
+$args = array(
+	'name'          => 'Footer sidebar #3',
+	'id'            => 'footer-sidebar-3',
+	'class'         => 'footer-sidebar',
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+	'after_widget'  => '</aside>',
+	'before_title'  => '<h2 class="widgettitle">',
+	'after_title'   => '</h2>'
+);
+register_sidebar( $args );
+
+$args = array(
+	'name'          => 'Footer sidebar #4',
+	'id'            => 'footer-sidebar-4',
+	'class'         => 'footer-sidebar',
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+	'after_widget'  => '</aside>',
+	'before_title'  => '<h2 class="widgettitle">',
+	'after_title'   => '</h2>'
+);
+register_sidebar( $args );
+
+
 
 
 // Run the SETUP process
-function fullflow_setup () {
+function nuts_setup () {
 
 	// Adds RSS feed links to <head> for posts and comments.
 	add_theme_support( 'automatic-feed-links' );
 
 	// Register the menu locations
 	register_nav_menu( 'primary', __( 'Primary Menu', 'nuts' ) );
-    register_nav_menu( 'footermenu', __( 'Footer Menu', 'nuts' ) );
-    
+
 }
-add_action ( 'after_setup_theme', 'fullflow_setup' );
+add_action ( 'after_setup_theme', 'nuts_setup' );
 
 ?>

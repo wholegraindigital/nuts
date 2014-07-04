@@ -14,7 +14,7 @@
 	</head>
     
     <body>
-		<div id="wrapper">
+		<div id="wrapper" class="wrapper">
 		
 			<header>
 				<?php nuts_logo(); ?>
