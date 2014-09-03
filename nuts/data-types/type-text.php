@@ -13,7 +13,7 @@ function nuts_type_text_field ( $name, $value ) {
 
 	global $nuts_options_array;
 	
-	if ( $nuts_options_array[$name]["size"] != "" ) $size = $nuts_options_array[$name]["size"];
+	if ( $nuts_options_array[$name]["size"] != NULL ) $size = $nuts_options_array[$name]["size"];
 		else $size = DEFAULT_TEXT_SIZE;
 
 	echo '<div class="text">
@@ -28,7 +28,7 @@ function nuts_type_text_field ( $name, $value ) {
 
 
 
-// Gives you the image object based on the option name
+// Returns the text value
 function nuts_get_text ( $name ) {
 
 	return nuts_get_option ( $name );
@@ -38,7 +38,7 @@ function nuts_get_text ( $name ) {
 
 
 
-// This is the function that returns the image in the size defined in its registered array
+// Prints the text
 function nuts_text ( $name ) {
 
 	echo nuts_get_text ( $name );

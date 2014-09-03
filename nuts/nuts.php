@@ -327,7 +327,7 @@ function nuts_get_sections ( $post_type = "theme_options" ) {
 }
 
 
-// Gets the pure form reference name based on the option name
+// Gets the pure form reference name based on the option name. Literally converts the option name used by NUTS into a WP backend form friendly name
 function nuts_form_ref ( $option_name ) {
 
     global $nuts_options_array;
@@ -792,7 +792,8 @@ function nuts_get_option ( $name ) {
 		if ( !array_key_exists ( $name, $options ) ) return $nuts_options_array[$name]["default"];
 		else return $options[$name];
 	}
-	else return $nuts_options_array[$name]["default"];
+	else if ( isset ( $nuts_options_array[$name]["default"] ) ) return $nuts_options_array[$name]["default"];
+		else return;
 
 }
 

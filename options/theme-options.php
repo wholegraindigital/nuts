@@ -13,18 +13,22 @@ $nuts_logo = array (
 nuts_register_option ( $nuts_logo );
 
 
-
-// Added image 1
-$nuts_image_array = array ( 
-        "name"			=> "image1",
-        "title"			=> "Sample image 1",
-        "description"	=> "Please upload an optional image here.",
+// The margin above the logo
+$nuts_topmargin = array ( 
+        "name"			=> "starter_topmargin",
+        "title"			=> "Top margin above the logo",
+        "description"	=> "Enter the top margin value in pixels.",
         "section"		=> "nuts_first_section",
-        "type"			=> "image",
-        "size"			=> "thumbnail",
-        "default"		=> "No image found."
+        "type"			=> "number",
+        "step"			=> "1",
+        "min"			=> "0",
+        "max"			=> "200",
+        "default"		=> "105",
+        "less"			=> true,
+        "prefix"		=> "",
+        "suffix"		=> "px",
 );
-nuts_register_option ( $nuts_image_array );
+nuts_register_option ( $nuts_topmargin );
 
 
 

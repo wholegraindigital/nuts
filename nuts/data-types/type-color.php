@@ -3,7 +3,7 @@
 // The file must have the type-[data-type].php filename format
 
 
-define	( "DEFAULT_COLOR",	"#000000");
+define	( "DEFAULT_COLOR",	"#000000" );
 
 
 

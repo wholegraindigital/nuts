@@ -41,7 +41,7 @@ function nuts_get_select ( $name ) {
 
 
 
-// This is the function that returns the image in the size defined in its registered array
+// This is the function that prints the value
 function nuts_select ( $name ) {
 
 	echo nuts_get_select ( $name );

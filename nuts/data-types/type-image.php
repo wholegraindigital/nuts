@@ -4,7 +4,7 @@
 
 
 
-define	( "DEFAULT_IMAGE_SIZE",	"medium");
+define	( "DEFAULT_IMAGE_SIZE",	"medium" );
 
 
 
@@ -56,7 +56,7 @@ function nuts_get_image_size ( $name ) {
 
 	global $nuts_options_array;
 	
-	if ( $nuts_options_array[$name]["size"] != "" ) $size = $nuts_options_array[$name]["size"];
+	if ( $nuts_options_array[$name]["size"] != NULL ) $size = $nuts_options_array[$name]["size"];
 		else $size = DEFAULT_IMAGE_SIZE;
 
 	return $size;	
@@ -80,7 +80,7 @@ function nuts_get_image ( $name, $size = "", $class = "" ) {
 	}
 	else $value = $img_id;
 	
-	if ( $img_id == "" ) $value = $nuts_options_array[$name]["default"];
+//	if ( $img_id == "" ) $value = $nuts_options_array[$name]["default"];
 
 	return $value;
 

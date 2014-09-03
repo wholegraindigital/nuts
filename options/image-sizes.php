@@ -7,7 +7,7 @@ add_theme_support( 'post-thumbnails' );
 set_post_thumbnail_size( 700, 350, true, array( 'left', 'center' ) ); 
 
 // Add extra image sizes
-add_image_size( 'homepage-thumb', 220, 180, true );
+add_image_size( 'homepage-thumb', 220, 180, false );
 	
 
 ?>
