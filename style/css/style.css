@@ -1,84 +1,4 @@
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+* {
   margin: 0;
   padding: 0;
   border: 0;
@@ -133,10 +53,11 @@ table {
   margin-right: auto;
 }
 .one-quarter {
-  width: 19%;
-  padding-left: 4%;
-  padding-right: 4%;
+  width: 25%;
+  padding-left: 2%;
+  padding-right: 2%;
   float: left;
+  box-sizing: border-box;
 }
 .one-quarter:first-child {
   padding-left: 0%;
@@ -163,6 +84,10 @@ body {
   font-size: 14px;
   color: #666;
 }
+p {
+  line-height: 1.8em;
+  margin-bottom: 1.8em;
+}
 #wrapper {
   padding-bottom: 125px;
 }
@@ -174,10 +99,6 @@ body {
   width: 73%;
   margin-right: 8%;
   float: left;
-}
-#contentWrapper p {
-  line-height: 1.8em;
-  margin-bottom: 1.8em;
 }
 #right-sidebar {
   width: 19%;
@@ -192,9 +113,18 @@ h1 {
   font-weight: bold;
   margin: 32px 0 28px;
 }
+h1 a {
+  text-decoration: none;
+}
 a {
   color: #999;
   text-decoration: underline;
+}
+hr {
+  border: 2px solid #1e73be;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  border-radius: 3px;
 }
 .nuts-logo {
   margin: 40px 0 30px 0;
@@ -290,20 +220,30 @@ nav .menu li:hover ul li:hover ul li:hover ul {
   border-radius: 30px;
   display: inline-block;
 }
+.pagination {
+  margin-top: 80px;
+}
+#content a {
+  color: #1e73be;
+}
+.widget ul li {
+  margin-bottom: 1.2em;
+  display: block;
+}
+.widget ul li ul li {
+  margin-left: 1em;
+  margin-top: .6em;
+}
 .sidebar .widget {
   margin-bottom: 45px;
   padding: 0 13px;
   font-size: 12px;
 }
-.sidebar .widget a {
-  margin-bottom: 8px;
-  display: inline-block;
-}
 .sidebar .widget .searchform {
   border: 2px solid #1e73be;
   border-radius: 30px;
   margin: 0 -13px;
-  padding: 3px;
+  padding: 2px 3px 3px;
 }
 .sidebar .widget .searchform input[type=text] {
   border: none;
@@ -313,6 +253,7 @@ nav .menu li:hover ul li:hover ul li:hover ul {
   font-family: arial;
   color: #999;
   margin-left: 7px;
+  padding: 3px;
 }
 .sidebar .widget .searchform input[type=submit] {
   background-color: #1e73be;
@@ -325,6 +266,7 @@ nav .menu li:hover ul li:hover ul li:hover ul {
   font-family: arial;
   font-size: 12px;
   float: right;
+  padding: 3px 4px 2px;
 }
 .sidebar .widget .widgettitle {
   background-color: #1e73be;
@@ -340,22 +282,56 @@ footer {
   min-height: 20px;
   clear: both;
   padding-top: 30px;
+  padding-bottom: 90px;
+}
+footer .wrapper {
+  display: table;
+}
+footer .column {
+  width: 25%;
+  padding-left: 2%;
+  padding-right: 2%;
+  float: left;
+  box-sizing: border-box;
+  border-right: 2px solid #d7d7d7;
+  display: table-cell;
+  float: none;
+}
+footer .column:first-child {
+  padding-left: 0%;
+}
+footer .column:last-child {
+  padding-right: 0%;
+}
+footer .column:last-child {
+  border-right: none;
 }
 footer .widget {
   font-size: 12px;
-  width: 19%;
-  padding-left: 4%;
-  padding-right: 4%;
-  float: left;
-}
-footer .widget:first-child {
-  padding-left: 0%;
-}
-footer .widget:last-child {
-  padding-right: 0%;
 }
 footer .widgettitle {
   font-size: 13px;
   font-weight: bold;
-  color: #000;
+  color: #666;
+  margin-bottom: 25px;
+}
+footer p {
+  line-height: 1.5em;
+  margin-bottom: 1.5em;
+}
+footer .simple_tweet_widget a {
+  vertical-align: top;
+}
+footer .simple_tweet_widget img {
+  display: inline-block;
+  width: 34px;
+  margin-right: 14px;
+}
+footer .simple_tweet_widget .tweets {
+  display: inline-block;
+  max-width: 170px;
+}
+footer .simple_tweet_widget .tweet-time {
+  display: inline-block;
+  margin-top: 10px;
 }

@@ -14,7 +14,7 @@ nuts_register_option ( $nuts_logo );
 
 
 // The margin above the logo
-$nuts_topmargin = array ( 
+$nuts_option_array = array ( 
         "name"			=> "starter_topmargin",
         "title"			=> "Top margin above the logo",
         "description"	=> "Enter the top margin value in pixels.",
@@ -28,7 +28,7 @@ $nuts_topmargin = array (
         "prefix"		=> "",
         "suffix"		=> "px",
 );
-nuts_register_option ( $nuts_topmargin );
+nuts_register_option ( $nuts_option_array );
 
 
 

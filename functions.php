@@ -63,6 +63,14 @@ register_sidebar( $args );
 
 
 
+// Replaces the excerpt "more" text by a link
+function new_excerpt_more($more) {
+       global $post;
+	return ' <a class="readmore" href="'. get_permalink($post->ID) . '">Read more...</a>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
+
+
 
 // Run the SETUP process
 function nuts_setup () {

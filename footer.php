@@ -5,13 +5,21 @@
 	<footer>
 		<div class="wrapper">
 
-			<?php dynamic_sidebar( 'Footer sidebar #1' ); ?>
-			<?php dynamic_sidebar( 'Footer sidebar #2' ); ?>
-			<?php dynamic_sidebar( 'Footer sidebar #3' ); ?>
-			<?php dynamic_sidebar( 'Footer sidebar #4' ); ?>
+			<div class="column">
+				<?php dynamic_sidebar( 'Footer sidebar #1' ); ?>
+			</div>
+			<div class="column">
+				<?php dynamic_sidebar( 'Footer sidebar #2' ); ?>
+			</div>
+			<div class="column">
+				<?php dynamic_sidebar( 'Footer sidebar #3' ); ?>
+			</div>
+			<div class="column">
+				<?php dynamic_sidebar( 'Footer sidebar #4' ); ?>
+			</div>
 			
 		</div>
-		
+
 		<div class="clearfix"></div>
 		
 	</footer>
