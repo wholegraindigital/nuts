@@ -4,6 +4,7 @@
 		<div class="featimage"><?php the_post_thumbnail(); ?></div>
 		<h1><?php the_title(); ?></h1>
 		<?php the_content(); ?>
+		<?php if ( nuts_get_value ( 'source' ) ) echo '<p>'. nuts_get_value ( 'source_label' ) .' <a href="'.nuts_get_value ( 'source' ).'">'.nuts_get_value ( 'source' ).'</a></p>' ?>
 		<aside class="postmeta"><?php 
 			$author = get_the_author();
 			$date = get_the_date( 'M j, Y' );

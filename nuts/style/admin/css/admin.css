@@ -13,6 +13,7 @@
   width: 30%;
   display: inline-block;
   float: left;
+  font-weight: bold;
 }
 .ui-tabs {
   position: relative;
@@ -61,6 +62,12 @@
 }
 .ui-tabs .ui-tabs-hide {
   display: none !important;
+}
+.optiondesc {
+  padding: 0 10px 15px !important;
+  border-bottom: 1px solid #ccc;
+  font-style: italic;
+  font-size: 12px !important;
 }
 .nuts-error {
   border: 1px solid #a00;

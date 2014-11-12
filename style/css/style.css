@@ -82,7 +82,7 @@ body {
   background: #fff;
   font-family: arial;
   font-size: 14px;
-  color: #666;
+  color: #666666;
 }
 p {
   line-height: 1.8em;
@@ -96,8 +96,8 @@ p {
   margin: 0 auto;
 }
 #contentWrapper {
-  width: 73%;
-  margin-right: 8%;
+  width: 70%;
+  margin-right: 11%;
   float: left;
 }
 #right-sidebar {
@@ -107,14 +107,47 @@ p {
 .clearfix {
   clear: both;
 }
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #3366aa;
-  font-size: 24px;
   font-weight: bold;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  text-decoration: none;
+}
+h1 {
+  font-size: 24px;
   margin: 32px 0 28px;
 }
-h1 a {
-  text-decoration: none;
+h2 {
+  font-size: 20px;
+  margin: 32px 0 28px;
+}
+h3 {
+  font-size: 18px;
+  margin: 32px 0 28px;
+}
+h4 {
+  font-size: 16px;
+  margin: 32px 0 28px;
+}
+h5 {
+  font-size: 14px;
+  margin: 32px 0 28px;
+}
+h6 {
+  font-size: 14px;
+  color: #666666;
+  margin: 32px 0 28px;
 }
 a {
   color: #999;
@@ -225,6 +258,21 @@ nav .menu li:hover ul li:hover ul li:hover ul {
 }
 #content a {
   color: #1e73be;
+}
+#content img.aligncenter {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+#content img.alignleft {
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+#content img.alignright {
+  margin-left: 16px;
+  margin-bottom: 16px;
+}
+#content .featimage img {
+  margin: 0;
 }
 .widget ul li {
   margin-bottom: 1.2em;

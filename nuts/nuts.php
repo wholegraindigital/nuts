@@ -407,45 +407,44 @@ function nuts_admin_init () {
 	
 
 	// Add the option fields
-	foreach ( $nuts_options_array as $setting ) {
+	foreach ( $nuts_options_array as $option ) {
 	
 		// Dynamically create sections if not registered yet.
-		if ( !in_array ( $setting["section"], $loaded_sections ) ) {
+		if ( !in_array ( $option["section"], $loaded_sections ) ) {
 		
 			add_settings_section(
-				$setting["section"], 
-				nuts_section_name ( $setting["section"] ), 
+				$option["section"], 
+				nuts_section_name ( $option["section"] ), 
 				'nuts_section_info', 
 				'nuts_theme_options'
 			);  
 			
-			$loaded_sections[] = $setting["section"];
+			$loaded_sections[] = $option["section"];
 
-			if ( !nuts_section_registered ( $setting["section"] ) ) {
+			if ( !nuts_section_registered ( $option["section"] ) ) {
 			
 				nuts_register_section ( array(
-						"name"			=> $setting["section"],
-						"title"			=> $setting["section"],
+						"name"			=> $option["section"],
+						"title"			=> $option["section"],
 						"description"	=> "",
-						"tab"			=> $setting["section"]
+						"tab"			=> $option["section"]
 					) );
 				
 			}
 			
 		}
 	
-		if ( !isset ( $setting["type"] ) ) $setting["type"] = "";
+		if ( !isset ( $option["type"] ) ) $option["type"] = "";
 	
-		if ( strstr ( $setting["section"], "::" ) == false ) {
+		if ( strstr ( $option["section"], "::" ) == false ) {
 	
 			add_settings_field (
-				$setting["name"],
-				$setting["title"],
+				$option["name"],
+				$option["title"],
 				'nuts_theme_options_callback',
 				'nuts_theme_options',
-				$setting["section"],
-				array( 	'name' => $setting["name"],
-						'type' => $setting["type"] ) 
+				$option["section"],
+				$option 
 			);  
 		
 		}
@@ -496,15 +495,20 @@ function nuts_theme_options_callback ( $args ) {
 	if ( !array_key_exists ( $name, $options ) ) $options[$name] = "";
 
 	
-	if ( $type == "" ) nuts_error ( 'No data type was set up for option: ' . $name );
+	if ( $type == "" ) 
+		nuts_error ( 'No data type was set up for option: ' . $name );
 	
-	elseif ( !nuts_type_registered ( $type ) ) nuts_error ( 'Invalid data type (' . $type . ') for option: ' . $name );
+	elseif ( !nuts_type_registered ( $type ) ) 
+		nuts_error ( 'Invalid data type (' . $type . ') for option: ' . $name );
 	
 	else {
 	
 		$type_func = "nuts_type_" . $type . "_field";
 
 		$type_func ( $name, $options[$name] );
+		
+		if ( $args["description"] != "" ) 
+			echo '</tr><tr><td class="optiondesc" colspan="2">'. $args["description"] .'</td>';
 
 	}
 	
@@ -678,7 +682,8 @@ function nuts_inner_custom_box ( $post, $metabox ) {
 			if ( get_post_meta ( $post->ID, $meta_key ) == "" ) $values = array();
 				else $values = get_post_meta ( $post->ID, $meta_key );
 				
-			if ( !isset ( $values[0][$option["name"]] ) ) $values[0][$option["name"]] = "";
+			if ( !isset ( $values[0][$option["name"]] ) ) 
+				$values[0][$option["name"]] = "";
 				
 			echo '<div class="clearfix meta-option">';
 				
@@ -688,7 +693,7 @@ function nuts_inner_custom_box ( $post, $metabox ) {
 			
 			$type_func ( $option["name"], $values[0][$option["name"]] );
 			
-			echo '</div><div class="clearfix"></div>';
+			echo '</div><p class="optiondesc">'. $option["description"] .'</p><div class="clearfix"></div>';
 
 		}
 		
@@ -755,7 +760,7 @@ function nuts_save_postdata( $post_id ) {
 }
 
 
-// Gets the option array from Theme Options or Post metabox and returns an array if any values found --- returns default value or empty string if no value found in database. 
+// Gets the option array for Theme Options or Post metabox from the database and returns an array if any values found --- returns default value or empty string if no value found in database. 
 // This function is used by data types, please use it if you are writing your own data type!
 function nuts_get_option ( $name ) {
 

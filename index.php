@@ -6,8 +6,8 @@
 		<?php get_template_part ( 'loop', 'blog' ); ?>
 		
 		<aside class="pagination">
-			<?php next_posts_link('Older Posts'); ?>
-			<?php previous_posts_link('Newer Posts'); ?>
+			<?php next_posts_link( nuts_get_value ( 'olderposts' ) ); ?>
+			<?php previous_posts_link( nuts_get_value ( 'newerposts' ) ); ?>
 		</aside>
 
     </div><!-- content -->

@@ -26,7 +26,7 @@ body {
 	background: #fff;
 	font-family: arial;
 	font-size: 14px;
-	color: #666;
+	color: @bodyColor;
 
 }
 
@@ -52,8 +52,8 @@ p {
 
 #contentWrapper {
 
-	width: 73%;
-	margin-right: 8%;
+	width: 70%;
+	margin-right: 11%;
 	float: left;
 	
 }
@@ -74,19 +74,60 @@ p {
 	
 }
 
-h1 {
-	
+h1, h2, h3, h4, h5, h6 {
+
 	color: @h1color;
-	font-size: 24px;
 	font-weight: bold;
-	margin: 32px 0 28px;
 	
 	a {
 	
 		text-decoration: none;
 	
 	}
+
+}
+
+h1 {
 	
+	font-size: 24px;
+	margin: 32px 0 28px;
+		
+}
+
+h2 {
+	
+	font-size: 20px;
+	margin: 32px 0 28px;
+		
+}
+
+h3 {
+	
+	font-size: 18px;
+	margin: 32px 0 28px;
+		
+}
+
+h4 {
+	
+	font-size: 16px;
+	margin: 32px 0 28px;
+		
+}
+
+h5 {
+	
+	font-size: 14px;
+	margin: 32px 0 28px;
+		
+}
+
+h6 {
+	
+	font-size: 14px;
+	color: @bodyColor;
+	margin: 32px 0 28px;
+		
 }
 
 a {
@@ -246,9 +287,40 @@ nav {
 
 }
 
-#content a {
+#content {
 
-	color: @acolor;
+	a {
+	
+		color: @acolor;
+	
+	}
+	
+	img.aligncenter {
+	
+		margin-top: 16px;
+		margin-bottom: 16px;
+	
+	}
+	
+	img.alignleft {
+		
+		margin-right: 16px;
+		margin-bottom: 16px;
+		
+	}
+
+	img.alignright {
+		
+		margin-left: 16px;
+		margin-bottom: 16px;
+		
+	}
+	
+	.featimage img {
+	
+		margin: 0;
+	
+	}
 
 }
 

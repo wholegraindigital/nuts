@@ -1,6 +1,6 @@
 <?php
 
-// Load the NUTS PHP engine
+// Load the NUTS Framework engine
 require_once "nuts/nuts.php";
 
 
@@ -65,8 +65,11 @@ register_sidebar( $args );
 
 // Replaces the excerpt "more" text by a link
 function new_excerpt_more($more) {
-       global $post;
-	return ' <a class="readmore" href="'. get_permalink($post->ID) . '">Read more...</a>';
+
+	global $post;
+
+	return ' <a class="readmore" href="'. get_permalink($post->ID) . '">'. nuts_get_value ( 'readmore' ) .'</a>';
+
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 

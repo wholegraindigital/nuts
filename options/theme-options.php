@@ -6,7 +6,7 @@ $nuts_logo = array (
         "name"			=> "nuts_logo",
         "title"			=> "Theme Logo",
         "description"	=> "Please upload your website's logo here.",
-        "section"		=> "nuts_first_section",
+        "section"		=> "header",
         "type"			=> "image",
         "size"			=> "homepage-thumb"
 );
@@ -18,7 +18,7 @@ $nuts_option_array = array (
         "name"			=> "starter_topmargin",
         "title"			=> "Top margin above the logo",
         "description"	=> "Enter the top margin value in pixels.",
-        "section"		=> "nuts_first_section",
+        "section"		=> "header",
         "type"			=> "number",
         "step"			=> "1",
         "min"			=> "0",
@@ -32,27 +32,12 @@ nuts_register_option ( $nuts_option_array );
 
 
 
-// Text field
-$nuts_option_array = array ( 
-        "name"			=> "text45",
-        "title"			=> "TO text field",
-        "description"	=> "Write your text here.",
-        "section"		=> "nuts_first_section",
-        "type"			=> "text",
-        "size"			=> "",
-        "default"		=> "This is the default text."
-);
-nuts_register_option ( $nuts_option_array );
-
-
-
-
 // Color field
 $nuts_option_array = array ( 
         "name"			=> "acolor",
         "title"			=> "Theme Colour Scheme",
         "description"	=> "Please select a color. It will be the base of your colour scheme. Change it and test how your site responds to it.",
-        "section"		=> "nuts_second_section",
+        "section"		=> "colors",
         "type"			=> "color",
         "default"		=> "#a5d5a3",
         "less"			=> true
@@ -63,9 +48,9 @@ nuts_register_option ( $nuts_option_array );
 // Color field
 $nuts_option_array = array ( 
         "name"			=> "h1color",
-        "title"			=> "Color picker for H1 elements",
-        "description"	=> "Please select a color for H1 elements.",
-        "section"		=> "nuts_second_section",
+        "title"			=> "Heading elements",
+        "description"	=> "Please select a color for the heading (h1 .. h6) elements.",
+        "section"		=> "colors",
         "type"			=> "color",
         "default"		=> "#3366aa",
         "less"			=> true
@@ -73,14 +58,69 @@ $nuts_option_array = array (
 nuts_register_option ( $nuts_option_array );
 
 
-// Unknown type field
+// Color field
 $nuts_option_array = array ( 
-        "name"			=> "unk1",
-        "title"			=> "Unknown type option",
-        "description"	=> "Option with unknown type.",
-        "section"		=> "nuts_third_section",
-        "default"		=> ""
+        "name"			=> "bodyColor",
+        "title"			=> "Main body text",
+        "description"	=> "You can modify the body text color here. Use this as @bodyColor variable in your LESS files",
+        "section"		=> "colors",
+        "type"			=> "color",
+        "default"		=> "#666666",
+        "less"			=> true
 );
 nuts_register_option ( $nuts_option_array );
+
+
+// Text field
+$nuts_option_array = array ( 
+        "name"			=> "source_label",
+        "title"			=> "Label for the source",
+        "description"	=> "The text label that's displayed before the source link.",
+        "section"		=> "other",
+        "type"			=> "text",
+        "size"			=> "",
+        "default"		=> "Source:"
+);
+nuts_register_option ( $nuts_option_array );
+
+
+// Text field
+$nuts_option_array = array ( 
+        "name"			=> "readmore",
+        "title"			=> "Read more text",
+        "description"	=> "The read more text after the post excerpts in blog view.",
+        "section"		=> "other",
+        "type"			=> "text",
+        "size"			=> "",
+        "default"		=> "Read more..."
+);
+nuts_register_option ( $nuts_option_array );
+
+
+// Text field
+$nuts_option_array = array ( 
+        "name"			=> "newerposts",
+        "title"			=> "Newer Posts link text",
+        "description"	=> "Newer posts text used for pagination in blog view.",
+        "section"		=> "other",
+        "type"			=> "text",
+        "size"			=> "",
+        "default"		=> "Newer Posts"
+);
+nuts_register_option ( $nuts_option_array );
+
+
+// Text field
+$nuts_option_array = array ( 
+        "name"			=> "olderposts",
+        "title"			=> "Older Posts link text",
+        "description"	=> "Older posts text used for pagination in blog view.",
+        "section"		=> "other",
+        "type"			=> "text",
+        "size"			=> "",
+        "default"		=> "Older Posts"
+);
+nuts_register_option ( $nuts_option_array );
+
 
 ?>

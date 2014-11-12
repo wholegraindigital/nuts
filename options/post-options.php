@@ -2,14 +2,14 @@
 
 // Text field
 $nuts_option_array = array ( 
-        "name"			=> "gkkhghk",
-        "title"			=> "Your name",
-        "description"	=> "Write your name here.",
-        "section"		=> "post::first_metabox",
+        "name"			=> "source",
+        "title"			=> "Source link",
+        "description"	=> "Source URL of the original article.",
+        "section"		=> "post::post_options",
         "type"			=> "text",
-        "size"			=> "",
-        "default"		=> "This is the default text."
+        "size"			=> ""
 );
 nuts_register_option ( $nuts_option_array );
+
 
 ?>

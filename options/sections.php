@@ -3,30 +3,42 @@
 
 // Set up the sections in Theme Options
 
-$nuts_first_section = array (
-	"name"			=> "nuts_first_section",
-	"title"			=> "NUTS First Section",
-	"description"	=> "This is the first section",
-	"tab"			=> "First"
+$section = array (
+	"name"			=> "header",
+	"title"			=> "Header",
+	"description"	=> "Options for the header, logo, etc.",
+	"tab"			=> "Header"
 );
-nuts_register_section ( $nuts_first_section );
+nuts_register_section ( $section );
 
 
-$nuts_second_section = array (
-	"name"			=> "nuts_second_section",
-	"title"			=> "NUTS Second Section",
-	"description"	=> "This is the second section",
-	"tab"			=> "Second"
+$section = array (
+	"name"			=> "colors",
+	"title"			=> "Colors",
+	"description"	=> "Set up the theme colors here",
+	"tab"			=> "Colors"
 );
-nuts_register_section ( $nuts_second_section );
+nuts_register_section ( $section );
 
-$nuts_post_metabox = array (
-	"name"			=> "post::first_metabox",
-	"title"			=> "Registered Metabox section",
+
+$section = array (
+	"name"			=> "other",
+	"title"			=> "Other options",
+	"description"	=> "Some miscellaneous options",
+	"tab"			=> "Other"
+);
+nuts_register_section ( $section );
+
+
+// And some custom field sections for posts
+
+$section = array (
+	"name"			=> "post::post_options",
+	"title"			=> "Post Options",
 	"description"	=> "This is an example metabox section",
 	"tab"			=> ""
 );
-nuts_register_section ( $nuts_post_metabox );
+nuts_register_section ( $section );
 
 
 
