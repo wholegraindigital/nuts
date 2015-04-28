@@ -74,6 +74,13 @@ p {
 	
 }
 
+a {
+
+	color: #999;
+	text-decoration: underline;
+
+}
+
 h1, h2, h3, h4, h5, h6 {
 
 	color: @h1color;
@@ -81,6 +88,7 @@ h1, h2, h3, h4, h5, h6 {
 	
 	a {
 	
+		color: @h1color;
 		text-decoration: none;
 	
 	}
@@ -128,13 +136,6 @@ h6 {
 	color: @bodyColor;
 	margin: 32px 0 28px;
 		
-}
-
-a {
-
-	color: #999;
-	text-decoration: underline;
-
 }
 
 hr {
@@ -295,6 +296,16 @@ nav {
 	
 	}
 	
+	h1, h2, h3, h4, h5, h6 {
+	
+		a {
+		
+			color: @h1color;
+		
+		}
+	
+	}
+	
 	img.aligncenter {
 	
 		margin-top: 16px;
@@ -358,7 +369,8 @@ nav {
 		border: 2px solid @acolor;
 		border-radius: 30px;
 		margin: 0 -13px;
-		padding: 2px 3px 3px;
+		padding: 2px 2px 3px;
+		height: 18px;
 
 		input[type=text] {
 		
@@ -370,12 +382,14 @@ nav {
 			color: #999;
 			margin-left: 7px;
 			padding: 3px;
+			background: transparent;
+			outline: none;
 			
 		}
 		
 		input[type=submit] {
 		
-			.starter-roundbox ( 0px, 4px );
+			.starter-roundbox ();
 			font-weight: bold;
 			text-transform: uppercase;
 			border: 0;
@@ -383,6 +397,8 @@ nav {
 			font-size: 12px;
 			float: right;
 			padding: 3px 4px 2px;
+			height: 19px;
+			width: 32px;
 		
 		}
 	

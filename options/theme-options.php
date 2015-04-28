@@ -35,11 +35,11 @@ nuts_register_option ( $nuts_option_array );
 // Color field
 $nuts_option_array = array ( 
         "name"			=> "acolor",
-        "title"			=> "Theme Colour Scheme",
-        "description"	=> "Please select a color. It will be the base of your colour scheme. Change it and test how your site responds to it.",
+        "title"			=> "Theme Color Scheme",
+        "description"	=> "Please select a color. It will be the base of your color scheme. Change it and test how your site responds to it.",
         "section"		=> "colors",
         "type"			=> "color",
-        "default"		=> "#a5d5a3",
+        "default"		=> "#333333",
         "less"			=> true
 );
 nuts_register_option ( $nuts_option_array );
@@ -52,7 +52,7 @@ $nuts_option_array = array (
         "description"	=> "Please select a color for the heading (h1 .. h6) elements.",
         "section"		=> "colors",
         "type"			=> "color",
-        "default"		=> "#3366aa",
+        "default"		=> "#97a141",
         "less"			=> true
 );
 nuts_register_option ( $nuts_option_array );

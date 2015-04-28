@@ -2,7 +2,7 @@
 
 /*
 NUTS WordPress Theme Framework
-Version: 0.1
+Version: 0.1 RC2
 For more information and documentation, visit [http://www.wholegraindigital.com/nuts]
 */
 
@@ -95,7 +95,7 @@ function nuts_make_admin_css () {
 	$parser->parse ( $addon_less );
 	$css = $parser->getCss ();
 	$nuts_css = fopen( dirname ( __FILE__ ) . '/style/admin/css/admin.css', "w");
-	if ( !fwrite ( $nuts_css, $css ) ) nuts_error ( 'Could not write CSS file - check your file permissions!' );
+	if ( !fwrite ( $nuts_css, $css ) ) nuts_error ( 'Could not write CSS file - check your file permissions!', true );
 	
 }
 
@@ -140,7 +140,7 @@ function nuts_make_front_css () {
 	$parser->parse ( $theme_less );
 	$css = $parser->getCss ();
 	$nuts_css = fopen( dirname ( dirname ( __FILE__ ) ) . '/style/css/style.css', "w");
-	if ( !fwrite ( $nuts_css, $css ) ) nuts_error ( 'Could not write CSS file - check your file permissions!' );
+	if ( !fwrite ( $nuts_css, $css ) ) nuts_error ( 'Could not write CSS file - check your file permissions!', true );
 	
 }
 
@@ -148,14 +148,18 @@ function nuts_make_front_css () {
 
 
 
-// Displays an error message in an alert box
-function nuts_error ( $msg ) {
+// Displays an error message in an alert box. If global = true then it displays it as an admin notification. Else next to the option
+function nuts_error ( $msg, $global = false ) {
 
-	echo '<p class="nuts-error">' . $msg . '</p>';
-
+	if ( $global == false ) echo '<p class="nuts-error">' . $msg . '</p>';
+	
+	else {
+		add_action( 'admin_notices', function() use ($msg) {
+			echo '<div class="error">NUTS Error: '. $msg .'</div>';
+		});
+	}
+	
 }
-
-
 
 
 // Safe loader for framework parts. Uses require_once if the file exists and is readable
@@ -762,6 +766,7 @@ function nuts_save_postdata( $post_id ) {
 
 // Gets the option array for Theme Options or Post metabox from the database and returns an array if any values found --- returns default value or empty string if no value found in database. 
 // This function is used by data types, please use it if you are writing your own data type!
+// In your template files use nuts_get_value instead
 function nuts_get_option ( $name ) {
 
 	global $nuts_options_array, $post;

@@ -18,5 +18,7 @@
 		
 			<header>
 				<?php nuts_logo(); ?>
-				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary_menu', 'container'       => 'nav' ) ); ?>
+				<nav>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary_menu', 'container'       => false ) ); ?>
+				</nav>
 			</header>

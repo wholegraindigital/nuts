@@ -1,7 +1,10 @@
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<?php 
+/* Loop for pages displaying single post */
+
+if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 	<article>
-		<div class="featimage"><?php the_post_thumbnail(); ?></div>
+		<?php if ( has_post_thumbnail() ) { ?><div class="featimage"><?php the_post_thumbnail(); ?></div><?php } ?>
 		<h1><?php the_title(); ?></h1>
 		<?php the_content(); ?>
 		<?php if ( nuts_get_value ( 'source' ) ) echo '<p>'. nuts_get_value ( 'source_label' ) .' <a href="'.nuts_get_value ( 'source' ).'">'.nuts_get_value ( 'source' ).'</a></p>' ?>

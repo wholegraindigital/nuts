@@ -107,13 +107,17 @@ p {
 .clearfix {
   clear: both;
 }
+a {
+  color: #999;
+  text-decoration: underline;
+}
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  color: #3366aa;
+  color: #97a141;
   font-weight: bold;
 }
 h1 a,
@@ -122,6 +126,7 @@ h3 a,
 h4 a,
 h5 a,
 h6 a {
+  color: #97a141;
   text-decoration: none;
 }
 h1 {
@@ -149,12 +154,8 @@ h6 {
   color: #666666;
   margin: 32px 0 28px;
 }
-a {
-  color: #999;
-  text-decoration: underline;
-}
 hr {
-  border: 2px solid #1e73be;
+  border: 2px solid #333333;
   margin-top: 80px;
   margin-bottom: 80px;
   border-radius: 3px;
@@ -164,10 +165,10 @@ hr {
 }
 .nuts-logo a {
   text-decoration: none;
-  color: #3366aa;
+  color: #97a141;
 }
 nav .menu {
-  background-color: #1e73be;
+  background-color: #333333;
   color: #fff;
   padding: 0 14px;
   border-radius: 30px;
@@ -180,7 +181,7 @@ nav .menu li {
   padding: 0;
 }
 nav .menu li:hover {
-  background: #3472a8;
+  background: #333333;
 }
 nav .menu li a,
 nav .menu li a:hover,
@@ -197,7 +198,7 @@ nav .menu li a:hover {
 nav .menu li ul {
   display: none;
   position: absolute;
-  background: #3472a8;
+  background: #333333;
   padding: 10px 0 20px 0;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -216,7 +217,7 @@ nav .menu li:hover ul li a {
   position: relative;
 }
 nav .menu li:hover ul li a:hover {
-  background: #285781;
+  background: #1a1a1a;
 }
 nav .menu li:hover ul li.menu-item-has-children > a:after {
   content: '';
@@ -247,7 +248,7 @@ nav .menu li:hover ul li:hover ul li:hover ul {
   display: block;
 }
 .postmeta {
-  background-color: #1e73be;
+  background-color: #333333;
   color: #fff;
   padding: 6px 14px;
   border-radius: 30px;
@@ -257,7 +258,15 @@ nav .menu li:hover ul li:hover ul li:hover ul {
   margin-top: 80px;
 }
 #content a {
-  color: #1e73be;
+  color: #333333;
+}
+#content h1 a,
+#content h2 a,
+#content h3 a,
+#content h4 a,
+#content h5 a,
+#content h6 a {
+  color: #97a141;
 }
 #content img.aligncenter {
   margin-top: 16px;
@@ -288,10 +297,11 @@ nav .menu li:hover ul li:hover ul li:hover ul {
   font-size: 12px;
 }
 .sidebar .widget .searchform {
-  border: 2px solid #1e73be;
+  border: 2px solid #333333;
   border-radius: 30px;
   margin: 0 -13px;
-  padding: 2px 3px 3px;
+  padding: 2px 2px 3px;
+  height: 18px;
 }
 .sidebar .widget .searchform input[type=text] {
   border: none;
@@ -302,11 +312,13 @@ nav .menu li:hover ul li:hover ul li:hover ul {
   color: #999;
   margin-left: 7px;
   padding: 3px;
+  background: transparent;
+  outline: none;
 }
 .sidebar .widget .searchform input[type=submit] {
-  background-color: #1e73be;
+  background-color: #333333;
   color: #fff;
-  padding: 0px 4px;
+  padding: 0 14px;
   border-radius: 30px;
   font-weight: bold;
   text-transform: uppercase;
@@ -315,9 +327,11 @@ nav .menu li:hover ul li:hover ul li:hover ul {
   font-size: 12px;
   float: right;
   padding: 3px 4px 2px;
+  height: 19px;
+  width: 32px;
 }
 .sidebar .widget .widgettitle {
-  background-color: #1e73be;
+  background-color: #333333;
   color: #fff;
   padding: 7px 14px;
   border-radius: 30px;

@@ -3,7 +3,7 @@
 <div id="contentWrapper">
     <div id="content">
             
-				<?php get_template_part ( 'loop' ); ?>
+		<?php get_template_part ( 'loop', 'blog' ); ?>
 
     </div><!-- content -->
 </div><!-- contentWrapper -->

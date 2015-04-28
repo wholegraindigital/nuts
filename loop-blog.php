@@ -1,9 +1,11 @@
-<?php 
+<?php
+/* Loop for pages displaying multiple posts */
+
 $count = 1;
 if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 	<article>
-		<div class="featimage"><a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a></div>
+		<?php if ( has_post_thumbnail() ) { ?><div class="featimage"><a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a></div><?php } ?>
 		<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 		<?php the_excerpt(); ?>
 		<?php if ( nuts_get_value ( 'source' ) ) echo '<p>'. nuts_get_value ( 'source_label' ) .' <a href="'.nuts_get_value ( 'source' ).'">'.nuts_get_value ( 'source' ).'</a></p>' ?>
