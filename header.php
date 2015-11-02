@@ -17,7 +17,9 @@
 		<div id="wrapper" class="wrapper">
 		
 			<header>
-				<?php nuts_logo(); ?>
+				<div class="logo-wrapper">
+					<?php nuts_logo(); ?>
+				</div>
 				<nav>
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary_menu', 'container'       => false ) ); ?>
 				</nav>

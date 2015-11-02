@@ -32,6 +32,21 @@ nuts_register_option ( $nuts_option_array );
 
 
 
+// Position of the logo: left, center or right
+$nuts_option_array = array ( 
+        "name"			=> "logo_position",
+        "title"			=> "Horizontal position of the logo",
+        "description"	=> "The logo will be placed to this side of the header",
+        "section"		=> "header",
+        "type"			=> "select",
+        "values"		=> array( "left" => "Left", "center" => "Center", "right" => "Right" ),
+        "default"		=> "right",
+        "less"			=> true,
+);
+nuts_register_option ( $nuts_option_array );
+
+
+
 // Color field
 $nuts_option_array = array ( 
         "name"			=> "acolor",
@@ -75,7 +90,7 @@ nuts_register_option ( $nuts_option_array );
 $nuts_option_array = array ( 
         "name"			=> "source_label",
         "title"			=> "Label for the source",
-        "description"	=> "The text label that's displayed before the source link.",
+        "description"	=> "The text label that's displayed before the source link right after the post contents.",
         "section"		=> "other",
         "type"			=> "text",
         "size"			=> "",

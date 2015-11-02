@@ -10,8 +10,9 @@ function nuts_type_select_field ( $name, $id ) {
 
 	global $nuts_options_array;
 	
-
-	echo '<select name="' . nuts_form_ref ( $name ) . '" id="' . $name . '">';
+	if ( $id == '' ) $id = $nuts_options_array[$name]["default"];
+	
+	echo '<select name="' . nuts_form_ref ( $name ) . '" id="' . $name . '" autocomplete="off">';
 
 	foreach ( $nuts_options_array[$name]["values"] as $key => $value ) {
 		echo '<option value="' . $key . '"';
@@ -19,6 +20,8 @@ function nuts_type_select_field ( $name, $id ) {
 		if ( $key == $id ) echo ' selected';
 		
 		echo '>' . $value . '</option>';
+		echo $key . ' ' . $id;
+
 	}
 	
 	echo '</select>';
@@ -28,13 +31,14 @@ function nuts_type_select_field ( $name, $id ) {
 
 
 // Gets the value of the saved option
-function nuts_get_select ( $name ) {
+function nuts_get_select ( $name, $key = false ) {
 
 	global $nuts_options_array;
 
 	$id = nuts_get_option ( $name );
 
-	return $nuts_options_array[$name]["values"][$id];
+	if ( $key ) return $id;
+		else return $nuts_options_array[$name]["values"][$id];
 
 }
 
@@ -42,9 +46,9 @@ function nuts_get_select ( $name ) {
 
 
 // This is the function that prints the value
-function nuts_select ( $name ) {
+function nuts_select ( $name, $key = false ) {
 
-	echo nuts_get_select ( $name );
+	echo nuts_get_select ( $name, $key );
 	
 }
 

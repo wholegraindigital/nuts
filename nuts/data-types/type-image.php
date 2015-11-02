@@ -137,7 +137,7 @@ function nuts_image ( $name, $size = "", $print = "img" ) {
 
 
 
-// This is a special function that shows your "nuts_logo" option as the site logo, with linking it to the Home page
+// This is a special function that shows your "nuts_logo" option as the site logo, with linking it to the Home page. If no logo is present's shows the textual site name
 function nuts_logo ( $a = "home" ) {
 
 	if ( nuts_option_registered ( "nuts_logo" ) ) {

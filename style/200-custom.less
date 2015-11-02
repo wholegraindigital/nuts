@@ -147,6 +147,19 @@ p {
 
 }
 
+strong, b {
+
+	font-weight: bold;
+
+}
+
+em, i {
+
+    font-style: italic;
+
+}
+
+
 
 // 3. Header
 
@@ -163,7 +176,16 @@ p {
 
 }
 
+.logo-wrapper {
+
+	text-align: @logo_position;
+
+}
+
+
 nav {
+
+	clear: both;
 
 	.menu {
 	
@@ -179,7 +201,7 @@ nav {
 			
 			&:hover {
 			
-				background: desaturate(@acolor, 20%);
+				background: darken( desaturate(@acolor, 20%), 10% );
 			
 			}
 			
@@ -189,12 +211,6 @@ nav {
 				color: #fff;
 				padding: 8px 15px;
 				display: block;
-			
-			}
-			
-			a:hover {
-			
-				text-decoration: underline;
 			
 			}
 			
@@ -357,6 +373,18 @@ nav {
 		margin: 0;
 	
 	}
+	
+	code, pre {
+	
+		font-family: monospace;
+		background-color: #e8e8e8;
+		display: block;
+		padding: 20px;
+		margin-bottom: 1.8em;
+		line-height: 1.8em;
+		white-space: pre-wrap;
+	
+	}
 
 }
 
@@ -452,6 +480,7 @@ footer {
 	clear: both;
 	padding-top: 30px;
 	padding-bottom: 90px;
+	line-height: 1.5em;
 	
 	.wrapper {
 	
@@ -477,6 +506,12 @@ footer {
 	.widget {
 	
 		font-size: 12px;
+		
+		ul li {
+		
+			margin-bottom: .6em;
+		
+		}
 	
 	}
 	
@@ -491,7 +526,6 @@ footer {
 	
 	p {
 	
-		line-height: 1.5em;
 		margin-bottom: 1.5em;
 	
 	}

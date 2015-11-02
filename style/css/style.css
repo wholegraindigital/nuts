@@ -84,10 +84,6 @@ body {
   font-size: 14px;
   color: #666666;
 }
-p {
-  line-height: 1.8em;
-  margin-bottom: 1.8em;
-}
 #wrapper {
   padding-bottom: 125px;
 }
@@ -160,12 +156,30 @@ hr {
   margin-bottom: 80px;
   border-radius: 3px;
 }
+p {
+  line-height: 1.8em;
+  margin-bottom: 1.8em;
+}
+strong,
+b {
+  font-weight: bold;
+}
+em,
+i {
+  font-style: italic;
+}
 .nuts-logo {
   margin: 40px 0 30px 0;
 }
 .nuts-logo a {
   text-decoration: none;
   color: #97a141;
+}
+.logo-wrapper {
+  text-align: Right;
+}
+nav {
+  clear: both;
 }
 nav .menu {
   background-color: #333333;
@@ -181,7 +195,7 @@ nav .menu li {
   padding: 0;
 }
 nav .menu li:hover {
-  background: #333333;
+  background: #1a1a1a;
 }
 nav .menu li a,
 nav .menu li a:hover,
@@ -191,9 +205,6 @@ nav .menu li a:active {
   color: #fff;
   padding: 8px 15px;
   display: block;
-}
-nav .menu li a:hover {
-  text-decoration: underline;
 }
 nav .menu li ul {
   display: none;
@@ -268,6 +279,22 @@ nav .menu li:hover ul li:hover ul li:hover ul {
 #content h6 a {
   color: #97a141;
 }
+#content ul,
+#content ol {
+  list-style: disc;
+}
+#content ul li,
+#content ol li {
+  margin-left: 36px;
+  line-height: 1.8em;
+}
+#content ol {
+  list-style: decimal;
+}
+#content article > ul,
+#content article > ol {
+  margin-bottom: 1.8em;
+}
 #content img.aligncenter {
   margin-top: 16px;
   margin-bottom: 16px;
@@ -282,6 +309,16 @@ nav .menu li:hover ul li:hover ul li:hover ul {
 }
 #content .featimage img {
   margin: 0;
+}
+#content code,
+#content pre {
+  font-family: monospace;
+  background-color: #e8e8e8;
+  display: block;
+  padding: 20px;
+  margin-bottom: 1.8em;
+  line-height: 1.8em;
+  white-space: pre-wrap;
 }
 .widget ul li {
   margin-bottom: 1.2em;
@@ -345,6 +382,7 @@ footer {
   clear: both;
   padding-top: 30px;
   padding-bottom: 90px;
+  line-height: 1.5em;
 }
 footer .wrapper {
   display: table;
@@ -371,6 +409,9 @@ footer .column:last-child {
 footer .widget {
   font-size: 12px;
 }
+footer .widget ul li {
+  margin-bottom: .6em;
+}
 footer .widgettitle {
   font-size: 13px;
   font-weight: bold;
@@ -378,7 +419,6 @@ footer .widgettitle {
   margin-bottom: 25px;
 }
 footer p {
-  line-height: 1.5em;
   margin-bottom: 1.5em;
 }
 footer .simple_tweet_widget a {
