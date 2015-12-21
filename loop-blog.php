@@ -12,7 +12,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 		<aside class="postmeta"><?php 
 			$author = get_the_author();
 			$date = get_the_date( 'M j, Y' );
-			printf ( __('Posted by %1$s on %2$s' ,'nuts'), $author, $date ); ?></aside>
+			printf ( __( 'Posted by %1$s on %2$s', 'nuts' ), $author, $date ); ?></aside>
 	</article>
 	
 	<?php $count++;
@@ -21,7 +21,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	
 <?php endwhile; else: ?>
 
-	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+	<p><?php _e( 'Sorry, no posts matched your criteria.', 'nuts' ); ?></p>
 	
 <?php endif; ?>
 			

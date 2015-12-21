@@ -95,7 +95,7 @@ function nuts_make_admin_css () {
 	$parser->parse ( $addon_less );
 	$css = $parser->getCss ();
 	$nuts_css = fopen( dirname ( __FILE__ ) . '/style/admin/css/admin.css', "w");
-	if ( !fwrite ( $nuts_css, $css ) ) nuts_error ( 'Could not write CSS file - check your file permissions!', true );
+	if ( !fwrite ( $nuts_css, $css ) ) nuts_error ( __( 'Could not write CSS file - check your file permissions!', 'nuts' ), true );
 
 }
 
@@ -140,7 +140,7 @@ function nuts_make_front_css () {
 	$parser->parse ( $theme_less );
 	$css = $parser->getCss ();
 	$nuts_css = fopen( dirname ( dirname ( __FILE__ ) ) . '/style/css/style.css', "w");
-	if ( !fwrite ( $nuts_css, $css ) ) nuts_error ( 'Could not write CSS file - check your file permissions!', true );
+	if ( !fwrite ( $nuts_css, $css ) ) nuts_error ( __( 'Could not write CSS file - check your file permissions!', 'nuts' ), true );
 
 }
 
@@ -155,7 +155,7 @@ function nuts_error ( $msg, $global = false ) {
 
 	else {
 		add_action( 'admin_notices', function() use ($msg) {
-			echo '<div class="error">NUTS Error: '. $msg .'</div>';
+			echo '<div class="error">' . __( 'NUTS Error: ', 'nuts' ) . $msg .'</div>';
 		});
 	}
 
@@ -172,7 +172,7 @@ function nuts_loader ( $filename ) {
 
 	}
 
-	else nuts_error ( "File not exists:" . $filename );
+	else nuts_error ( __( 'File not exists: ', 'nuts' ) . $filename );
 
 }
 
@@ -397,7 +397,13 @@ function nuts_admin_init () {
 
     global $nuts_options_array;
 
-    add_theme_page ( 'NUTS Theme Options', 'Theme Options', 'manage_options', 'nuts_theme_options', 'nuts_theme_options' );
+    add_theme_page ( 
+    	__( 'NUTS Theme Options', 'nuts' ), 
+    	__( 'Theme Options', 'nuts' ), 
+    	'manage_options', 
+    	'nuts_theme_options', 
+    	'nuts_theme_options' 
+    );
 
 	if( get_option( 'nuts_theme_options' ) == false )
 		add_option( 'nuts_theme_options' );
@@ -500,7 +506,7 @@ function nuts_theme_options_callback ( $args ) {
 
 
 	if ( $type == "" )
-		nuts_error ( 'No data type was set up for option: ' . $name );
+		nuts_error ( __( 'No data type was set up for option: ', 'nuts' ) . $name );
 
 	elseif ( !nuts_type_registered ( $type ) )
 		nuts_error ( 'Invalid data type (' . $type . ') for option: ' . $name );
@@ -675,7 +681,7 @@ function nuts_inner_custom_box ( $post, $metabox ) {
 
 	foreach ( $options as $option ) {
 
-		if ( $option["type"] == "" ) nuts_error ( 'No data type was set up for option: ' . $option["name"] );
+		if ( $option["type"] == "" ) nuts_error ( __( 'No data type was set up for option: ', 'nuts' ) . $option["name"] );
 
 		elseif ( !nuts_type_registered ( $option["type"] ) ) nuts_error ( 'Invalid data type (' . $option["type"] . ') for option: ' . $option["name"] );
 

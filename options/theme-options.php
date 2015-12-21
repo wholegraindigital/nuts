@@ -4,8 +4,8 @@
 // The "nuts_logo" is a special (unique) option. It can be reached with the nuts_logo() function in the frontend - if defined
 $nuts_logo = array ( 
         "name"			=> "nuts_logo",
-        "title"			=> "Theme Logo",
-        "description"	=> "Please upload your website's logo here.",
+        "title"			=> __( 'Theme Logo', 'nuts' ),
+        "description"	        => __( 'Please upload your website\'s logo here.', 'nuts' ),
         "section"		=> "header",
         "type"			=> "image",
         "size"			=> "homepage-thumb"
@@ -16,8 +16,8 @@ nuts_register_option ( $nuts_logo );
 // The margin above the logo
 $nuts_option_array = array ( 
         "name"			=> "starter_topmargin",
-        "title"			=> "Top margin above the logo",
-        "description"	=> "Enter the top margin value in pixels.",
+        "title"			=> __( 'Top margin above the logo', 'nuts' ),
+        "description"	        => __( 'Enter the top margin value in pixels.', 'nuts' ),
         "section"		=> "header",
         "type"			=> "number",
         "step"			=> "1",
@@ -35,8 +35,8 @@ nuts_register_option ( $nuts_option_array );
 // Position of the logo: left, center or right
 $nuts_option_array = array ( 
         "name"			=> "logo_position",
-        "title"			=> "Horizontal position of the logo",
-        "description"	=> "The logo will be placed to this side of the header",
+        "title"			=> __( 'Horizontal position of the logo', 'nuts' ),
+        "description"	        => __( 'The logo will be placed to this side of the header', 'nuts' ),
         "section"		=> "header",
         "type"			=> "select",
         "values"		=> array( "left" => "Left", "center" => "Center", "right" => "Right" ),
@@ -50,8 +50,8 @@ nuts_register_option ( $nuts_option_array );
 // Color field
 $nuts_option_array = array ( 
         "name"			=> "acolor",
-        "title"			=> "Theme Color Scheme",
-        "description"	=> "Please select a color. It will be the base of your color scheme. Change it and test how your site responds to it.",
+        "title"			=> __( 'Theme Color Scheme', 'nuts' ),
+        "description"	        => __( 'Please select a color. It will be the base of your color scheme. Change it and test how your site responds to it.', 'nuts' ),
         "section"		=> "colors",
         "type"			=> "color",
         "default"		=> "#333333",
@@ -63,8 +63,8 @@ nuts_register_option ( $nuts_option_array );
 // Color field
 $nuts_option_array = array ( 
         "name"			=> "h1color",
-        "title"			=> "Heading elements",
-        "description"	=> "Please select a color for the heading (h1 .. h6) elements.",
+        "title"			=> __( 'Heading elements', 'nuts' ),
+        "description"	        => __( 'Please select a color for the heading (h1 .. h6) elements.', 'nuts' ),
         "section"		=> "colors",
         "type"			=> "color",
         "default"		=> "#97a141",
@@ -76,8 +76,8 @@ nuts_register_option ( $nuts_option_array );
 // Color field
 $nuts_option_array = array ( 
         "name"			=> "bodyColor",
-        "title"			=> "Main body text",
-        "description"	=> "You can modify the body text color here. Use this as @bodyColor variable in your LESS files",
+        "title"			=> __( 'Main body text', 'nuts' ),
+        "description"	        => __( 'You can modify the body text color here. Use this as @bodyColor variable in your LESS files', 'nuts' ),
         "section"		=> "colors",
         "type"			=> "color",
         "default"		=> "#666666",
@@ -89,12 +89,12 @@ nuts_register_option ( $nuts_option_array );
 // Text field
 $nuts_option_array = array ( 
         "name"			=> "source_label",
-        "title"			=> "Label for the source",
-        "description"	=> "The text label that's displayed before the source link right after the post contents.",
+        "title"			=> __( 'Label for the source', 'nuts' ),
+        "description"	        => __( 'The text label that\'s displayed before the source link right after the post contents.', 'nuts' ),
         "section"		=> "other",
         "type"			=> "text",
         "size"			=> "",
-        "default"		=> "Source:"
+        "default"		=> __( 'Source:', 'nuts' )
 );
 nuts_register_option ( $nuts_option_array );
 
@@ -102,12 +102,12 @@ nuts_register_option ( $nuts_option_array );
 // Text field
 $nuts_option_array = array ( 
         "name"			=> "readmore",
-        "title"			=> "Read more text",
-        "description"	=> "The read more text after the post excerpts in blog view.",
+        "title"			=> __( 'Read more text', 'nuts' ),
+        "description"	        => __( 'The read more text after the post excerpts in blog view.', 'nuts' ),
         "section"		=> "other",
         "type"			=> "text",
         "size"			=> "",
-        "default"		=> "Read more..."
+        "default"		=> __( 'Read more...', 'nuts' )
 );
 nuts_register_option ( $nuts_option_array );
 
@@ -115,12 +115,12 @@ nuts_register_option ( $nuts_option_array );
 // Text field
 $nuts_option_array = array ( 
         "name"			=> "newerposts",
-        "title"			=> "Newer Posts link text",
-        "description"	=> "Newer posts text used for pagination in blog view.",
+        "title"			=> __( 'Newer Posts link text', 'nuts' ),
+        "description"	        => __( 'Newer posts text used for pagination in blog view.', 'nuts' ),
         "section"		=> "other",
         "type"			=> "text",
         "size"			=> "",
-        "default"		=> "Newer Posts"
+        "default"		=> __( 'Newer Posts', 'nuts' )
 );
 nuts_register_option ( $nuts_option_array );
 
@@ -128,12 +128,12 @@ nuts_register_option ( $nuts_option_array );
 // Text field
 $nuts_option_array = array ( 
         "name"			=> "olderposts",
-        "title"			=> "Older Posts link text",
-        "description"	=> "Older posts text used for pagination in blog view.",
+        "title"			=> __( 'Older Posts link text', 'nuts' ),
+        "description"	        => __( 'Older posts text used for pagination in blog view.', 'nuts' ),
         "section"		=> "other",
         "type"			=> "text",
         "size"			=> "",
-        "default"		=> "Older Posts"
+        "default"		=> __( 'Older Posts', 'nuts' )
 );
 nuts_register_option ( $nuts_option_array );
 

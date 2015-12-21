@@ -3,8 +3,8 @@
 // Text field
 $nuts_option_array = array ( 
         "name"			=> "source",
-        "title"			=> "Source link",
-        "description"	=> "Source URL of the original article.",
+        "title"			=> __( 'Source link', 'nuts' ),
+        "description"	=> __( 'Source URL of the original article.', 'nuts' ),
         "section"		=> "post::post_options",
         "type"			=> "text",
         "size"			=> ""
