@@ -127,7 +127,7 @@ function nuts_image ( $name, $size = "", $print = "img" ) {
 	}
 	
 	else {
-		nuts_error ( "Invalid parameter: " . $print );
+		nuts_error ( __( 'Invalid parameter: ', 'nuts' ) . $print );
 		return;
 	}
 	
@@ -158,7 +158,7 @@ function nuts_logo ( $a = "home" ) {
 
 	}
 	
-	else nuts_error ( "Please register a logo first before calling the nuts_logo() function." );
+	else nuts_error ( __( 'Please register a logo first before calling the nuts_logo() function.', 'nuts' ) );
 		
 }
 

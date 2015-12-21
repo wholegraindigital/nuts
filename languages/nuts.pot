@@ -1,0 +1,244 @@
+# NUTS framework
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NUTS Starter (NUTS Framework)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: Wed Aug 26 2015 09:26:31 GMT+0200 (CEST)\n"
+"POT-Revision-Date: Mon Dec 21 2015 20:16:30 GMT+0100 (CET)\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
+"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
+"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
+"esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: /functions.php:8
+msgid "Right sidebar"
+msgstr ""
+
+#: /functions.php:10
+msgid "Sidebar displayed in the right column"
+msgstr ""
+
+#: /functions.php:20
+msgid "Footer sidebar #1"
+msgstr ""
+
+#: /functions.php:31
+msgid "Footer sidebar #2"
+msgstr ""
+
+#: /functions.php:42
+msgid "Footer sidebar #3"
+msgstr ""
+
+#: /functions.php:53
+msgid "Footer sidebar #4"
+msgstr ""
+
+#: /functions.php:98
+msgid "Primary Menu"
+msgstr ""
+
+#: /loop-blog.php:15 /loop.php:14
+#, php-format
+msgid "Posted by %1$s on %2$s"
+msgstr ""
+
+#: /loop-blog.php:24 /loop-page.php:14 /loop.php:19
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+
+#: /searchform.php:3
+msgid "Search"
+msgstr ""
+
+#: /searchform.php:4
+msgid "Go"
+msgstr ""
+
+#: /nuts/nuts.php:98 /nuts/nuts.php:143
+msgid "Could not write CSS file - check your file permissions!"
+msgstr ""
+
+#: /nuts/nuts.php:158
+msgid "NUTS Error: "
+msgstr ""
+
+#: /nuts/nuts.php:175
+msgid "File not exists: "
+msgstr ""
+
+#: /nuts/nuts.php:401
+msgid "NUTS Theme Options"
+msgstr ""
+
+#: /nuts/nuts.php:402
+msgid "Theme Options"
+msgstr ""
+
+#: /nuts/nuts.php:509 /nuts/nuts.php:684
+msgid "No data type was set up for option: "
+msgstr ""
+
+#: /nuts/data-types/type-image.php:130
+msgid "Invalid parameter: "
+msgstr ""
+
+#: /nuts/data-types/type-image.php:161
+msgid "Please register a logo first before calling the nuts_logo() function."
+msgstr ""
+
+#: /options/post-options.php:6
+msgid "Source link"
+msgstr ""
+
+#: /options/post-options.php:7
+msgid "Source URL of the original article."
+msgstr ""
+
+#: /options/sections.php:8
+msgid "Header"
+msgstr ""
+
+#: /options/sections.php:9
+msgid "Options for the header, logo, etc."
+msgstr ""
+
+#: /options/sections.php:17
+msgid "Colors"
+msgstr ""
+
+#: /options/sections.php:18
+msgid "Set up the theme colors here"
+msgstr ""
+
+#: /options/sections.php:26
+msgid "Other options"
+msgstr ""
+
+#: /options/sections.php:27
+msgid "Some miscellaneous options"
+msgstr ""
+
+#: /options/sections.php:37
+msgid "Post Options"
+msgstr ""
+
+#: /options/sections.php:38
+msgid "This is an example metabox section"
+msgstr ""
+
+#: /options/theme-options.php:7
+msgid "Theme Logo"
+msgstr ""
+
+#: /options/theme-options.php:8
+msgid "Please upload your website's logo here."
+msgstr ""
+
+#: /options/theme-options.php:19
+msgid "Top margin above the logo"
+msgstr ""
+
+#: /options/theme-options.php:20
+msgid "Enter the top margin value in pixels."
+msgstr ""
+
+#: /options/theme-options.php:38
+msgid "Horizontal position of the logo"
+msgstr ""
+
+#: /options/theme-options.php:39
+msgid "The logo will be placed to this side of the header"
+msgstr ""
+
+#: /options/theme-options.php:53
+msgid "Theme Color Scheme"
+msgstr ""
+
+#: /options/theme-options.php:54
+msgid ""
+"Please select a color. It will be the base of your color scheme. Change it "
+"and test how your site responds to it."
+msgstr ""
+
+#: /options/theme-options.php:66
+msgid "Heading elements"
+msgstr ""
+
+#: /options/theme-options.php:67
+msgid "Please select a color for the heading (h1 .. h6) elements."
+msgstr ""
+
+#: /options/theme-options.php:79
+msgid "Main body text"
+msgstr ""
+
+#: /options/theme-options.php:80
+msgid ""
+"You can modify the body text color here. Use this as @bodyColor variable in "
+"your LESS files"
+msgstr ""
+
+#: /options/theme-options.php:92
+msgid "Label for the source"
+msgstr ""
+
+#: /options/theme-options.php:93
+msgid ""
+"The text label that's displayed before the source link right after the post "
+"contents."
+msgstr ""
+
+#: /options/theme-options.php:97
+msgid "Source:"
+msgstr ""
+
+#: /options/theme-options.php:105
+msgid "Read more text"
+msgstr ""
+
+#: /options/theme-options.php:106
+msgid "The read more text after the post excerpts in blog view."
+msgstr ""
+
+#: /options/theme-options.php:110
+msgid "Read more..."
+msgstr ""
+
+#: /options/theme-options.php:118
+msgid "Newer Posts link text"
+msgstr ""
+
+#: /options/theme-options.php:119
+msgid "Newer posts text used for pagination in blog view."
+msgstr ""
+
+#: /options/theme-options.php:123
+msgid "Newer Posts"
+msgstr ""
+
+#: /options/theme-options.php:131
+msgid "Older Posts link text"
+msgstr ""
+
+#: /options/theme-options.php:132
+msgid "Older posts text used for pagination in blog view."
+msgstr ""
+
+#: /options/theme-options.php:136
+msgid "Older Posts"
+msgstr ""
